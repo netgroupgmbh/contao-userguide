@@ -1,0 +1,13 @@
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+
+#    NetGroup\UserGuide\Classes\Services\ExampleHelper:
+#        arguments:
+#            - '%kernel.project_dir%'
+#            - '@database_connection'
+#            - '%env(PROJECT_ENV_VARIABLE)%'
+#            - '@request_stack'
+#            - '@contao.routing.scope_matcher'
+#            - '%contao.image.valid_extensions%'

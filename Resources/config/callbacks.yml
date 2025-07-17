@@ -1,0 +1,11 @@
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+
+    # Callbacks
+    NetGroup\UserGuide\Classes\Contao\Callbacks\TlGuides:
+        arguments:
+            $connection: '@database_connection'
+        tags:
+            - { name: contao.callback, table: tl_guides, target: fields.category.options, method: loadKategories, priority: 1024 }

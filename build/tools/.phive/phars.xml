@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<phive xmlns="https://phar.io/phive">
+  <phar name="phpcs" version="^4.0.0-RC1" installed="4.0.0-RC1" location="././phpcs" copy="true"/>
+  <phar name="phpcbf" version="^4.0.0-RC1" installed="4.0.0-RC1" location="././phpcbf" copy="true"/>
+  <phar name="phpcpd" version="^6.0.3" installed="6.0.3" location="././phpcpd" copy="true"/>
+</phive>
