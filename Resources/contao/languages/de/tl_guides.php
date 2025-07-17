@@ -29,6 +29,7 @@ $element = 'Anleitung';
  */
 $GLOBALS['TL_LANG'][$table]['title']    = ['Titel', 'Bitte geben Sie den Titel der Anleitung ein.'];
 $GLOBALS['TL_LANG'][$table]['category'] = ['Kategorie', 'Bitte wählen Sie die Kategorie der Anleitung aus.'];
+$GLOBALS['TL_LANG'][$table]['icon']     = ['Icon', 'Bitte wählen Sie das Icon für die Anleitung aus.'];
 $GLOBALS['TL_LANG'][$table]['content']  = ['Text', 'Bitte geben Sie den Text der Anleitung ein.'];
 
 

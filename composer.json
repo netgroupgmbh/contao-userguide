@@ -1,5 +1,5 @@
 {
-    "name": "netgroup/UserGuide",
+    "name": "netgroup/userguide",
     "description": "Es handelt sich um eine Erweiterung für das Open Source CMS Contao",
     "license": "proprietary",
     "type": "contao-bundle",

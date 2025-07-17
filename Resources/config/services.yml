@@ -3,6 +3,20 @@ services:
         autowire: true
         autoconfigure: true
 
+    # Factories
+    NetGroup\UserGuide\Classes\Services\Factories\TemplateFactory: ~
+
+    NetGroup\UserGuide\Classes\Services\Factories\MarkdownFactory: ~
+
+
+    # Helper
+    NetGroup\UserGuide\Classes\Services\Helper\GuideRenderer:
+        public: true
+
+    NetGroup\UserGuide\Classes\Services\Helper\QueryHelper:
+        arguments:
+            $connection: '@database_connection'
+
 #    NetGroup\UserGuide\Classes\Services\ExampleHelper:
 #        arguments:
 #            - '%kernel.project_dir%'

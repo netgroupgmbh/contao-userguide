@@ -37,7 +37,8 @@
  * file to see how back end modules are configured.
  */
 $GLOBALS['BE_MOD']['netgroup']['usersguide'] = [
-    'tables' => ['tl_manuals', 'tl_guides', 'tl_manual_categories'],
+    'tables'        => ['tl_manuals', 'tl_guides', 'tl_manual_categories'],
+    'renderguide'   => [\NetGroup\UserGuide\Classes\Contao\Backend\PageRenderer::class, 'render'],
 ];
 
 

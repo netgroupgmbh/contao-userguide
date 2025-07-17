@@ -9,3 +9,5 @@ services:
             $connection: '@database_connection'
         tags:
             - { name: contao.callback, table: tl_guides, target: fields.category.options, method: loadKategories, priority: 1024 }
+            - { name: contao.callback, table: tl_guides, target: list.label.label, method: createLabel, priority: 1024 }
+            - { name: contao.callback, table: tl_guides, target: config.onload, method: addFontAwesome, priority: 1024 }

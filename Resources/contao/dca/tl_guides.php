@@ -41,7 +41,7 @@ $GLOBALS['TL_DCA'][$table] = [
         ],
         'label' => [
             'fields'            => ['title', 'title'],
-            'format'            => '%s'
+            'format'            => '%s',
         ],
         'global_operations' => [
             'all' => [
@@ -89,7 +89,7 @@ $GLOBALS['TL_DCA'][$table] = [
 	// Palettes
 	'palettes' => [
         '__selector__'              => [''],
-        'default'                   => '{title_legend},title,category;{content_legend},content;'
+        'default'                   => '{title_legend},title,category,icon;{content_legend},content;'
     ],
 
 	// Subpalettes
@@ -111,6 +111,7 @@ $GLOBALS['TL_DCA'][$table] = [
         'title' => [
             'label'                 => &$GLOBALS['TL_LANG'][$table]['title'],
             'exclude'               => true,
+            'search'                => true,
             'inputType'             => 'text',
             'eval'                  => ['mandatory'=>true, 'maxlength'=>255, 'tl_class' => 'w50'],
             'sql'                   => "varchar(255) NOT NULL default ''"
@@ -118,13 +119,24 @@ $GLOBALS['TL_DCA'][$table] = [
         'category' => [
             'label'                 => &$GLOBALS['TL_LANG'][$table]['category'],
             'exclude'               => true,
+            'filter'                => true,
             'inputType'             => 'select',
+            'eval'                  => ['maxlength'=>255, 'tl_class' => 'w50', 'includeBlankOption' => true],
+            'sql'                   => "varchar(255) NOT NULL default ''"
+        ],
+        'icon' => [
+            'label'                 => &$GLOBALS['TL_LANG'][$table]['icon'],
+            'exclude'               => true,
+            'filter'                => true,
+            'inputType'             => 'select',
+            'options'               => ['fa-solid fa-circle-exclamation' => 'circle-exclamation'],
             'eval'                  => ['maxlength'=>255, 'tl_class' => 'w50', 'includeBlankOption' => true],
             'sql'                   => "varchar(255) NOT NULL default ''"
         ],
         'content' => [
             'label'                 => &$GLOBALS['TL_LANG'][$table]['content'],
             'exclude'               => true,
+            'search'                => true,
             'inputType'             => 'textarea',
             'eval'                  => ['mandatory'=>true, 'rte'=>'ace|markdown', 'tl_class'=>'clr', 'allowHtml'=>true, 'class'=>'monospace', 'helpwizard'=>true],
             'sql'                   => "text NULL"

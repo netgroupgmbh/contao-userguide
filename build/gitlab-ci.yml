@@ -21,7 +21,7 @@ test_cto5.3_php8.3:
     image: registry.netgroup.de/testsuite_cto5.3_php8.3:1.0.1
     variables:
         GIT_STRATEGY: none
-        PROJECT_NAME: netgroup/<#project#>
+        PROJECT_NAME: netgroup/userguide
     before_script:
         - COMPOSER_MEMORY_LIMIT=-1 /usr/local/bin/composer.phar config repositories.composer composer $TEST_PACKAGE_URL --working-dir=/htdocs/
         - COMPOSER_MEMORY_LIMIT=-1 /usr/local/bin/composer.phar config repositories.testproject vcs $TEST_PROJECT_URL --working-dir=/htdocs/
