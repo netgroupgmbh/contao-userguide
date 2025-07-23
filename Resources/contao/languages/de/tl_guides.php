@@ -27,23 +27,18 @@ $element = 'Anleitung';
 /**
  * Fields
  */
-$GLOBALS['TL_LANG'][$table]['title']    = ['Titel', 'Bitte geben Sie den Titel der Anleitung ein.'];
-$GLOBALS['TL_LANG'][$table]['category'] = ['Kategorie', 'Bitte wählen Sie die Kategorie der Anleitung aus.'];
-$GLOBALS['TL_LANG'][$table]['icon']     = ['Icon', 'Bitte wählen Sie das Icon für die Anleitung aus.'];
-$GLOBALS['TL_LANG'][$table]['content']  = ['Text', 'Bitte geben Sie den Text der Anleitung ein.'];
+$GLOBALS['TL_LANG'][$table]['title']    = ['Titel', 'Bitte geben Sie den Titel des Abschnitts ein.'];
+$GLOBALS['TL_LANG'][$table]['category'] = ['Kategorie', 'Bitte wählen Sie die Kategorie des Abschnitts aus.'];
+$GLOBALS['TL_LANG'][$table]['icon']     = ['Icon', 'Bitte wählen Sie das Icon für den Abschnitt aus. (Icons powered by fontawesome.com)'];
+$GLOBALS['TL_LANG'][$table]['content']  = ['Text', 'Bitte geben Sie den Text des Abschnitts ein. Sie können im Text <a href="https://www.markdownguide.org/basic-syntax/" style="text-decoration: underline;" target="_blank">Markdown</a> und <a href="https://docs.contao.org/manual/en/article-management/insert-tags/" style="text-decoration: underline;" target="_blank">InsertTags</a> verwenden.'];
+$GLOBALS['TL_LANG'][$table]['locked']   = ['Gesperrt', 'Ist der Haken gesetzt, kann der Abschnitt nicht mehr bearbeitet werden.'];
 
 
 /**
  * Legends
  */
-$GLOBALS['TL_LANG'][$table]['title_legend']     = 'Titel der Anleitung';
-$GLOBALS['TL_LANG'][$table]['content_legend']   = 'Text der Anleitung';
-
-
-/**
- * Reference
- *
-$GLOBALS['TL_LANG'][$table]['']   = [];
+$GLOBALS['TL_LANG'][$table]['title_legend']     = 'Einstellungen des Abschnitts';
+$GLOBALS['TL_LANG'][$table]['content_legend']   = 'Text des Abschnitts';
 
 
 /**

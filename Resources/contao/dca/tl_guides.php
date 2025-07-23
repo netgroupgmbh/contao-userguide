@@ -28,7 +28,8 @@ $GLOBALS['TL_DCA'][$table] = [
         'dataContainer'         => \Contao\DC_Table::class,
         'enableVersioning'      => true,
         'sql'                   => ['keys' => ['id' => 'primary']],
-        'ptable'                 => 'tl_manuals'
+        'ptable'                => 'tl_manuals',
+        'doNotCopyRecords'      => true
     ],
 
     // List
@@ -89,7 +90,7 @@ $GLOBALS['TL_DCA'][$table] = [
 	// Palettes
 	'palettes' => [
         '__selector__'              => [''],
-        'default'                   => '{title_legend},title,category,icon;{content_legend},content;'
+        'default'                   => '{title_legend},title,category,icon,locked;{content_legend},content;'
     ],
 
 	// Subpalettes
@@ -129,8 +130,7 @@ $GLOBALS['TL_DCA'][$table] = [
             'exclude'               => true,
             'filter'                => true,
             'inputType'             => 'select',
-            'options'               => ['fa-solid fa-circle-exclamation' => 'circle-exclamation'],
-            'eval'                  => ['maxlength'=>255, 'tl_class' => 'w50', 'includeBlankOption' => true],
+            'eval'                  => ['maxlength'=>255, 'tl_class' => 'w50', 'includeBlankOption' => true, 'chosen'=>true],
             'sql'                   => "varchar(255) NOT NULL default ''"
         ],
         'content' => [
@@ -138,8 +138,16 @@ $GLOBALS['TL_DCA'][$table] = [
             'exclude'               => true,
             'search'                => true,
             'inputType'             => 'textarea',
-            'eval'                  => ['mandatory'=>true, 'rte'=>'ace|markdown', 'tl_class'=>'clr', 'allowHtml'=>true, 'class'=>'monospace', 'helpwizard'=>true],
+            'eval'                  => ['mandatory'=>true, 'rte'=>'ace|markdown', 'tl_class'=>'clr', 'allowHtml'=>true, 'class'=>'monospace', 'decodeEntities'=>false, 'preserveTags'=>true],
             'sql'                   => "text NULL"
+        ],
+        'locked' => [
+            'label'                 => &$GLOBALS['TL_LANG'][$table]['locked'],
+            'exclude'               => true,
+            'search'                => true,
+            'inputType'             => 'checkbox',
+            'eval'                  => ['tl_class'=>'w50 m12'],
+            'sql'                   => "char(1) NOT NULL default ''"
         ]
 	]
 ];

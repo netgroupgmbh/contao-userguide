@@ -100,7 +100,7 @@ $GLOBALS['TL_DCA'][$table] = [
 	// Palettes
 	'palettes' => [
         '__selector__'              => [''],
-        'default'                   => '{title_legend},title;'
+        'default'                   => '{title_legend},title,locked;'
     ],
 
 	// Subpalettes
@@ -122,6 +122,14 @@ $GLOBALS['TL_DCA'][$table] = [
             'inputType'             => 'text',
             'eval'                  => ['mandatory'=>true, 'maxlength'=>255, 'tl_class' => 'w50'],
             'sql'                   => "varchar(255) NOT NULL default ''"
+        ],
+        'locked' => [
+            'label'                 => &$GLOBALS['TL_LANG'][$table]['locked'],
+            'exclude'               => true,
+            'search'                => true,
+            'inputType'             => 'checkbox',
+            'eval'                  => ['tl_class'=>'w50 m12'],
+            'sql'                   => "char(1) NOT NULL default ''"
         ]
 	]
 ];

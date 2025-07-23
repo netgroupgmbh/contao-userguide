@@ -26,9 +26,6 @@ class PageRenderer
      */
     public function render(): string
     {
-        $GLOBALS['TL_CSS'][] = 'bundles/netgroupuserguide/icons/fontawesome-free-6.6.0-web/css/all.css';
-        $GLOBALS['TL_CSS'][] = 'bundles/netgroupuserguide/css/markdown.css';
-
         return System::getContainer()->get(GuideRenderer::class)?->render();
     }
 }

@@ -1,6 +1,9 @@
 <div class="<?php echo $this->class; ?> block"<?php echo $this->cssID; ?><?php if ($this->style): ?> style="<?php echo $this->style; ?>"<?php endif; ?>>
     <div id="tl_buttons">
-        <a href="/contao?do=usersguide&table=tl_guides&id=<?= $this->manualId; ?>" class="header_back" accesskey="b" data-action="contao--scroll-offset#discard" title="Zurück zur vorherigen Seite">Zurück</a>
+        <?php if (false === $this->locked): ?>
+            <a href="/contao?do=usersguide&id=<?= $this->guideId; ?>&table=tl_guides&act=edit" class="header_edit_all" accesskey="b" data-action="contao--scroll-offset#discard" title="Bearbeiten">Bearbeiten</a>
+        <?php endif ?>
+        <a href="/contao?do=usersguide&table=tl_guides&id=<?= $this->manualId; ?>" class="header_back" accesskey="z" data-action="contao--scroll-offset#discard" title="Zurück zur vorherigen Seite">Zurück</a>
     </div>
 
     <?php if ($this->content): ?>

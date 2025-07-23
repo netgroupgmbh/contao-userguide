@@ -1,0 +1,9 @@
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+
+    # Hooks
+    NetGroup\UserGuide\Classes\Contao\Hooks\BackendTemplateHandler:
+        tags:
+            - { name: contao.hook, table: tl_guides, hook: outputBackendTemplate, method: insertPreviewLink, priority: 1024 }

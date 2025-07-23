@@ -4,18 +4,35 @@ services:
         autoconfigure: true
 
     # Factories
+    NetGroup\UserGuide\Classes\Services\Factories\FinderFactory: ~
+
     NetGroup\UserGuide\Classes\Services\Factories\TemplateFactory: ~
 
     NetGroup\UserGuide\Classes\Services\Factories\MarkdownFactory: ~
 
-
     # Helper
+    NetGroup\UserGuide\Classes\Services\Helper\AssetHelper: ~
+
+    NetGroup\UserGuide\Classes\Services\Helper\ContentHelper:
+        arguments:
+            $insertTagParser: '@contao.insert_tag.parser'
+
+    NetGroup\UserGuide\Classes\Services\Helper\FontAewsomeHelper:
+        arguments:
+            $projectRoot: '%kernel.project_dir%'
+
     NetGroup\UserGuide\Classes\Services\Helper\GuideRenderer:
         public: true
+
+    NetGroup\UserGuide\Classes\Services\Helper\LockHelper: ~
 
     NetGroup\UserGuide\Classes\Services\Helper\QueryHelper:
         arguments:
             $connection: '@database_connection'
+
+    NetGroup\UserGuide\Classes\Services\Helper\TableMatcher: ~
+
+    NetGroup\UserGuide\Classes\Services\Helper\TemplateHelper: ~
 
 #    NetGroup\UserGuide\Classes\Services\ExampleHelper:
 #        arguments:

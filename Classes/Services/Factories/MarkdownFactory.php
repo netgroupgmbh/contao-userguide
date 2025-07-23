@@ -32,7 +32,7 @@ class MarkdownFactory
 
     /**
      * @param InsertTagParser $parser
-     * @param RequestStack $requestStack
+     * @param RequestStack    $requestStack
      */
     public function __construct(
         private readonly InsertTagParser $parser,

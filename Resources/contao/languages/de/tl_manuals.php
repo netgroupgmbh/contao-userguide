@@ -21,7 +21,7 @@ $table = 'tl_manuals';
 /**
  * Set Elementname
  */
-$element = 'Handbuch';
+$element = 'Anleitung';
 
 /**
  * Global Operations
@@ -32,26 +32,21 @@ $GLOBALS['TL_LANG'][$table]['categories'] = ['Kategorien bearbeiten', 'Kategorie
 /**
  * Fields
  */
-$GLOBALS['TL_LANG'][$table]['title']   = ['Titel', 'Bitte geben Sie den Titel des Handbuchs ein.'];
+$GLOBALS['TL_LANG'][$table]['title']    = ['Titel', 'Bitte geben Sie den Titel der Anleitung ein.'];
+$GLOBALS['TL_LANG'][$table]['locked']   = ['Gesperrt', 'Ist der Haken gesetzt, kann die Anleitung nicht mehr bearbeitet werden.'];
 
 
 /**
  * Legends
  */
-$GLOBALS['TL_LANG'][$table]['title_legend']   = 'Title';
-
-
-/**
- * Reference
- *
-$GLOBALS['TL_LANG'][$table]['']   = [];
+$GLOBALS['TL_LANG'][$table]['title_legend'] = 'Title';
 
 
 /**
  * Buttons
  */
-$GLOBALS['TL_LANG'][$table]['new']        = ['Neues ' . $element, 'Neues ' . $element . ' anlegen'];
+$GLOBALS['TL_LANG'][$table]['new']        = ['Neue ' . $element, 'Neue ' . $element . ' anlegen'];
 $GLOBALS['TL_LANG'][$table]['edit']       = [$element . ' bearbeiten', $element . ' mit der ID %s bearbeiten'];
 $GLOBALS['TL_LANG'][$table]['copy']       = [$element . ' kopieren', $element . ' mit der ID %s kopieren'];
 $GLOBALS['TL_LANG'][$table]['delete']     = [$element . ' löschen', $element . ' mit der ID %s löschen'];
-$GLOBALS['TL_LANG'][$table]['show']       = [$element . ' anzeigen', 'Details des ' . $element . 's mit der ID %s anzeigen'];
+$GLOBALS['TL_LANG'][$table]['show']       = [$element . ' anzeigen', 'Details der ' . $element . ' mit der ID %s anzeigen'];

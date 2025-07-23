@@ -32,6 +32,7 @@ class Plugin implements BundlePluginInterface, ConfigPluginInterface, RoutingPlu
 
     /**
      * @param ParserInterface $parser
+     *
      * @return array|ConfigInterface[]
      */
     public function getBundles(ParserInterface $parser)
@@ -42,7 +43,7 @@ class Plugin implements BundlePluginInterface, ConfigPluginInterface, RoutingPlu
 
     /**
      * @param LoaderInterface $loader
-     * @param array $managerConfig
+     * @param array           $managerConfig
      *
      * @return void
      *
