@@ -23,6 +23,8 @@ class PageRenderer
 
     /**
      * @return string
+     *
+     * @codeCoverageIgnore
      */
     public function render(): string
     {

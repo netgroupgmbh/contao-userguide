@@ -12,7 +12,7 @@
 
 declare(strict_types=1);
 
-namespace NetGroup\UserGuide\Classes\Contao\Enums;
+namespace NetGroup\UserGuide\Classes\Enums;
 
 enum TableNames
 {

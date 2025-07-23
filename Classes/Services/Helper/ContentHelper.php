@@ -54,4 +54,23 @@ class ContentHelper
 
         return \str_replace('{\{', '{{', $content); // Schutz zur Ausgabe von InsertTags entfernen!
     }
+
+
+    /**
+     * Fügt den Vorschaulink beim Bearbeiten einer Anleitung in das Template ein.
+     *
+     * @param int    $manualId
+     * @param int    $guideId
+     * @param string $buffer
+     *
+     * @return string
+     */
+    public function insertBackLink(int $manualId, int $guideId, string $buffer): string
+    {
+        $search     = '<div id="tl_buttons">';
+        $link       = "/contao?do=usersguide&id=$manualId&table=tl_guides&key=renderguide&guide=$guideId";
+        $replace    = "$search\n<a href=\"$link\"><i class=\"fa-solid fa-magnifying-glass\"></i> Vorschau</a>";
+
+        return \str_replace($search, $replace, $buffer);
+    }
 }

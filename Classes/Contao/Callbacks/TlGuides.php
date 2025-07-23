@@ -15,13 +15,12 @@ declare(strict_types=1);
 namespace NetGroup\UserGuide\Classes\Contao\Callbacks;
 
 use Contao\DataContainer;
-use Contao\System;
-use NetGroup\UserGuide\Classes\Contao\Enums\RendererUrlPart;
-use NetGroup\UserGuide\Classes\Contao\Enums\TableNames;
+use NetGroup\UserGuide\Classes\Enums\TableNames;
 use NetGroup\UserGuide\Classes\Services\Helper\AssetHelper;
 use NetGroup\UserGuide\Classes\Services\Helper\FontAewsomeHelper;
 use NetGroup\UserGuide\Classes\Services\Helper\LockHelper;
 use NetGroup\UserGuide\Classes\Services\Helper\QueryHelper;
+use NetGroup\UserGuide\Classes\Services\Helper\TemplateHelper;
 
 class TlGuides
 {
@@ -37,7 +36,8 @@ class TlGuides
         private readonly FontAewsomeHelper $fontAewsomeHelper,
         private readonly AssetHelper $assetHelper,
         private readonly QueryHelper $queryHelper,
-        private readonly LockHelper $lockHelper
+        private readonly LockHelper $lockHelper,
+        private readonly TemplateHelper $templateHelper,
     ) {
     }
 
@@ -79,21 +79,7 @@ class TlGuides
      */
     public function createLabel(array $row, string $label, DataContainer $dc, array $labels): string
     {
-        $request = System::getContainer()->get('request_stack')?->getCurrentRequest();
-
-        if (null !== $request) {
-            $icon       = !empty($row['icon']) ? $row['icon'] : 'fa-solid fa-circle-info';
-            $url        = $request->getUri();
-            $link       = $url . '&key=' . RendererUrlPart::key->value;
-            $link      .= '&' . RendererUrlPart::guideId->value . '=' . $row['id'];
-            $img        = '<span style="font-size: 1.2em; color: #313132;">';
-            $img       .= '<i class="' . $icon. '"></i></span>';
-            $newLabel   = '<a href="' . $link . '">' . $img;
-            $newLabel  .= '<span  style="padding-left: 5px;">' . $label . '</span></a>';
-            $label      = $newLabel;
-        }
-
-        return $label;
+        return $this->templateHelper->getlabelForTlGuide($row, $label);
     }
 
 
@@ -126,8 +112,10 @@ class TlGuides
         if (null !== $dc && $table === $dc->table) {
             $pid = $dc->currentPid;
 
-            if (true === $this->lockHelper->checkLocked($pid, TableNames::tl_manuals)) { // check is tl_manual locked
+            // Prüfen, ob die Elterntabelle gesperrt ist, um globale Aktionen zu unterbinden!
+            if (true === $this->lockHelper->checkLocked($pid, TableNames::tl_manuals)) {
                 $GLOBALS['TL_DCA'][$table]['list']['global_operations'] = [];
+                $GLOBALS['TL_DCA'][$table]['list']['operations']        = [];
                 $GLOBALS['TL_DCA'][$table]['config']['closed']          = true;
                 $GLOBALS['TL_DCA'][$table]['config']['notDeletable']    = true;
                 $GLOBALS['TL_DCA'][$table]['config']['notEditable']     = true;

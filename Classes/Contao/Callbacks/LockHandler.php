@@ -17,7 +17,7 @@ namespace NetGroup\UserGuide\Classes\Contao\Callbacks;
 use Contao\CoreBundle\DataContainer\DataContainerOperation;
 use Contao\CoreBundle\Exception\AccessDeniedException;
 use Contao\DataContainer;
-use NetGroup\UserGuide\Classes\Contao\Enums\TableNames;
+use NetGroup\UserGuide\Classes\Enums\TableNames;
 use NetGroup\UserGuide\Classes\Services\Helper\LockHelper;
 use NetGroup\UserGuide\Classes\Services\Helper\TableMatcher;
 

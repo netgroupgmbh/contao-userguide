@@ -1,0 +1,8 @@
+<a href="<?= $this->url; ?>&key=<?= \NetGroup\UserGuide\Classes\Enums\RendererUrlPart::key->value; ?>&<?= \NetGroup\UserGuide\Classes\Enums\RendererUrlPart::guideId->value; ?>=<?= $this->id; ?>">
+    <span style="font-size: 1.2em; color: #313132;">
+        <i class="<?= $this->icon; ?>"></i>
+    </span>
+    <span  style="padding-left: 5px;">
+        <?= $this->label; ?>
+    </span>
+</a>

@@ -14,6 +14,7 @@ declare(strict_types=1);
 
 namespace NetGroup\UserGuide\Classes\Contao\Hooks;
 
+use NetGroup\UserGuide\Classes\Services\Helper\ContentHelper;
 use NetGroup\UserGuide\Classes\Services\Helper\QueryHelper;
 use Symfony\Component\HttpFoundation\RequestStack;
 
@@ -22,12 +23,14 @@ class BackendTemplateHandler
 
 
     /**
-     * @param RequestStack $requestStack
-     * @param QueryHelper  $queryHelper
+     * @param RequestStack  $requestStack
+     * @param QueryHelper   $queryHelper
+     * @param ContentHelper $contentHelper
      */
     public function __construct(
         private readonly RequestStack $requestStack,
-        private readonly QueryHelper $queryHelper
+        private readonly QueryHelper $queryHelper,
+        private readonly ContentHelper $contentHelper
     ) {
     }
 
@@ -54,13 +57,8 @@ class BackendTemplateHandler
                 && true === \str_contains($link, 'act=edit')
             ) {
                 $guideId    = (int) $request?->get('id');
-                $manualId   = $this->queryHelper->loadPidFromGuide($guideId);
-                $link       = "/contao?do=usersguide&id=$manualId&table=tl_guides&key=renderguide&guide=$guideId";
-                $search     = '<div id="tl_buttons">';
-                $replace    = "$search\n";
-                $replace   .= '<a href="' . $link . '">';
-                $replace   .= '<i class="fa-solid fa-magnifying-glass"></i> Vorschau</a>';
-                $buffer     = \str_replace($search, $replace, $buffer);
+                $manualId   = (int) $this->queryHelper->loadPidFromGuide($guideId);
+                $buffer     = $this->contentHelper->insertBackLink($manualId, $guideId, $buffer);
             }
         }
 

@@ -14,7 +14,7 @@ declare(strict_types=1);
 
 namespace NetGroup\UserGuide\Classes\Services\Helper;
 
-use NetGroup\UserGuide\Classes\Contao\Enums\TableNames;
+use NetGroup\UserGuide\Classes\Enums\TableNames;
 
 class LockHelper
 {
