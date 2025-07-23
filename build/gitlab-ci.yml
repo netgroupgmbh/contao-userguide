@@ -27,8 +27,7 @@ test_cto5.3_php8.3:
         - COMPOSER_MEMORY_LIMIT=-1 /usr/local/bin/composer.phar config repositories.testproject vcs $TEST_PROJECT_URL --working-dir=/htdocs/
         - COMPOSER_MEMORY_LIMIT=-1 /usr/local/bin/composer.phar require $PROJECT_NAME:dev-$CI_COMMIT_REF_NAME --working-dir=/htdocs/
     script:
-        - echo $PWD
-        - ls -lh
+        - ls -lh /
         - cd /htdocs/vendor/$PROJECT_NAME/
         - ./build/runtests.sh
     coverage: '/Methods: \d+\.\d+/'
