@@ -16,7 +16,7 @@ declare(strict_types=1);
  * Back end modules
  */
 $GLOBALS['TL_LANG']['MOD']['netgroup']              = ['NetGroup', 'NetGroup'];
-$GLOBALS['TL_LANG']['MOD']['usersguide']            = ['Handbücher', 'Handbücher'];
+$GLOBALS['TL_LANG']['MOD']['usersguide']            = ['Anleitungen', 'Anleitungen'];
 
 
 /**

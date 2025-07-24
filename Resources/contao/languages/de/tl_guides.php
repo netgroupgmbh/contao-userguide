@@ -21,7 +21,7 @@ $table = 'tl_guides';
 /**
  * Set Elementname
  */
-$element = 'Anleitung';
+$element = 'Abschnitt';
 
 
 /**
@@ -44,8 +44,8 @@ $GLOBALS['TL_LANG'][$table]['content_legend']   = 'Text des Abschnitts';
 /**
  * Buttons
  */
-$GLOBALS['TL_LANG'][$table]['new']        = ['Neue ' . $element, 'Neue ' . $element . ' anlegen'];
+$GLOBALS['TL_LANG'][$table]['new']        = ['Neuen ' . $element, 'Neuen ' . $element . ' anlegen'];
 $GLOBALS['TL_LANG'][$table]['edit']       = [$element . ' bearbeiten', $element . ' mit der ID %s bearbeiten'];
 $GLOBALS['TL_LANG'][$table]['copy']       = [$element . ' kopieren', $element . ' mit der ID %s kopieren'];
 $GLOBALS['TL_LANG'][$table]['delete']     = [$element . ' löschen', $element . ' mit der ID %s löschen'];
-$GLOBALS['TL_LANG'][$table]['show']       = [$element . ' anzeigen', 'Details der ' . $element . ' mit der ID %s anzeigen'];
+$GLOBALS['TL_LANG'][$table]['show']       = [$element . ' anzeigen', 'Details des ' . $element . 's mit der ID %s anzeigen'];

@@ -34,10 +34,11 @@ $GLOBALS['TL_DCA'][$table] = [
     // List
     'list' => [
         'sorting' => [
-            'mode'              => 3,
+            'mode'              => \Contao\DataContainer::MODE_PARENT,
             'fields'            => ['title'],
             'panelLayout'       => 'sort,filter;search,limit',
-            'flag'              => 1
+            'flag'              => \Contao\DataContainer::SORT_INITIAL_LETTER_ASC,
+            'headerFields'      => ['title']
         ],
         'label' => [
             'fields'            => ['title', 'title'],
@@ -111,6 +112,8 @@ $GLOBALS['TL_DCA'][$table] = [
         'title' => [
             'label'                 => &$GLOBALS['TL_LANG'][$table]['title'],
             'exclude'               => true,
+            'search'                => true,
+            'sorting'               => true,
             'inputType'             => 'text',
             'eval'                  => ['mandatory'=>true, 'maxlength'=>255, 'tl_class' => 'w50'],
             'sql'                   => "varchar(255) NOT NULL default ''"

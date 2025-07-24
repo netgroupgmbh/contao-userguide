@@ -35,10 +35,11 @@ $GLOBALS['TL_DCA'][$table] = [
     // List
     'list' => [
         'sorting' => [
-            'mode'              => 3,
+            'mode'              => \Contao\DataContainer::MODE_PARENT,
             'fields'            => ['title'],
             'panelLayout'       => 'sort,filter;search,limit',
-            'flag'              => 1
+            'flag'              => \Contao\DataContainer::SORT_INITIAL_LETTER_ASC,
+            'headerFields'      => ['title']
         ],
         'label' => [
             'fields'            => ['title', 'title'],
@@ -113,6 +114,7 @@ $GLOBALS['TL_DCA'][$table] = [
             'label'                 => &$GLOBALS['TL_LANG'][$table]['title'],
             'exclude'               => true,
             'search'                => true,
+            'sorting'               => true,
             'inputType'             => 'text',
             'eval'                  => ['mandatory'=>true, 'maxlength'=>255, 'tl_class' => 'w50'],
             'sql'                   => "varchar(255) NOT NULL default ''"
@@ -120,7 +122,8 @@ $GLOBALS['TL_DCA'][$table] = [
         'category' => [
             'label'                 => &$GLOBALS['TL_LANG'][$table]['category'],
             'exclude'               => true,
-            'filter'                => true,
+//            'filter'                => true, // raus, da für die Kategorien andere Anleitungen nur Ids angezeigt werden und diese kein Ergebnis liefern!
+            'sorting'               => true,
             'inputType'             => 'select',
             'eval'                  => ['maxlength'=>255, 'tl_class' => 'w50', 'includeBlankOption' => true],
             'sql'                   => "varchar(255) NOT NULL default ''"
@@ -129,6 +132,7 @@ $GLOBALS['TL_DCA'][$table] = [
             'label'                 => &$GLOBALS['TL_LANG'][$table]['icon'],
             'exclude'               => true,
             'filter'                => true,
+            'sorting'               => true,
             'inputType'             => 'select',
             'eval'                  => ['maxlength'=>255, 'tl_class' => 'w50', 'includeBlankOption' => true, 'chosen'=>true],
             'sql'                   => "varchar(255) NOT NULL default ''"
@@ -144,7 +148,7 @@ $GLOBALS['TL_DCA'][$table] = [
         'locked' => [
             'label'                 => &$GLOBALS['TL_LANG'][$table]['locked'],
             'exclude'               => true,
-            'search'                => true,
+            'sorting'               => true,
             'inputType'             => 'checkbox',
             'eval'                  => ['tl_class'=>'w50 m12'],
             'sql'                   => "char(1) NOT NULL default ''"

@@ -36,7 +36,7 @@ class BackendTemplateHandler
 
 
     /**
-     * Fügt den Vorschaulink beim Bearbeiten einer Anleitung ein.
+     * outputBackendTemplate-Hook: Fügt den Vorschaulink beim Bearbeiten einer Anleitung ein.
      *
      * @param string $buffer
      * @param string $template

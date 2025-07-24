@@ -43,7 +43,7 @@ class TlGuides
 
 
     /**
-     * options_callback: Lädt die Kategorien des Hanbuchs.
+     * options_callback: Lädt die Kategorien des Handbuchs.
      *
      * @param DataContainer $dc
      *
@@ -68,6 +68,19 @@ class TlGuides
 
 
     /**
+     * options_callback: Erstellt das Array mit den Optionen für das Icon-Feld.
+     *
+     * @param DataContainer|null $dc
+     *
+     * @return array
+     */
+    public function generateFontAwesomeOptions(?DataContainer $dc): array
+    {
+        return $this->fontAewsomeHelper->createOpteions();
+    }
+
+
+    /**
      * label_callback: Erstellt die Links für die Anischt der Anleitungen.
      *
      * @param array         $row
@@ -77,7 +90,7 @@ class TlGuides
      *
      * @return string
      */
-    public function createLabel(array $row, string $label, DataContainer $dc, array $labels): string
+    public function createLabel(array $row, string $label, DataContainer $dc, array $labels = []): string
     {
         return $this->templateHelper->getlabelForTlGuide($row, $label);
     }
@@ -122,18 +135,5 @@ class TlGuides
                 $GLOBALS['TL_DCA'][$table]['config']['notCopyable']     = true;
             }
         }
-    }
-
-
-    /**
-     * options_callback: Erstellt das Array mit den Optionen für das Icon-Feld.
-     *
-     * @param DataContainer|null $dc
-     *
-     * @return array
-     */
-    public function generateFontAwesomeOptions(?DataContainer $dc): array
-    {
-        return $this->fontAewsomeHelper->createOpteions();
     }
 }

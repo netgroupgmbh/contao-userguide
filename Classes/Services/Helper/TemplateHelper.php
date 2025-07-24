@@ -36,6 +36,7 @@ class TemplateHelper
      * @param TemplateFactory $templateFactory
      * @param ContentHelper   $contentHelper
      * @param LockHelper      $lockHelper
+     * @param RequestStack    $requestStack
      */
     public function __construct(
         private readonly TemplateFactory $templateFactory,

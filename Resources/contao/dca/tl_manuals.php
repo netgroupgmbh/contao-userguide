@@ -35,10 +35,10 @@ $GLOBALS['TL_DCA'][$table] = [
     // List
     'list' => [
         'sorting' => [
-            'mode'              => 1,
+            'mode'              => \Contao\DataContainer::MODE_SORTED,
             'fields'            => ['title'],
             'panelLayout'       => 'sort,filter;search,limit',
-            'flag'              => 1
+            'flag'              => \Contao\DataContainer::SORT_INITIAL_LETTER_ASC
         ],
         'label' => [
             'fields'            => ['title'],
@@ -119,6 +119,8 @@ $GLOBALS['TL_DCA'][$table] = [
         'title' => [
             'label'                 => &$GLOBALS['TL_LANG'][$table]['title'],
             'exclude'               => true,
+            'search'                => true,
+            'sorting'               => true,
             'inputType'             => 'text',
             'eval'                  => ['mandatory'=>true, 'maxlength'=>255, 'tl_class' => 'w50'],
             'sql'                   => "varchar(255) NOT NULL default ''"
@@ -126,7 +128,7 @@ $GLOBALS['TL_DCA'][$table] = [
         'locked' => [
             'label'                 => &$GLOBALS['TL_LANG'][$table]['locked'],
             'exclude'               => true,
-            'search'                => true,
+            'filter'                => true,
             'inputType'             => 'checkbox',
             'eval'                  => ['tl_class'=>'w50 m12'],
             'sql'                   => "char(1) NOT NULL default ''"
