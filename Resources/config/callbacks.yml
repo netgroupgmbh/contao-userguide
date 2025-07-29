@@ -21,6 +21,8 @@ services:
             - { name: contao.callback, table: tl_manuals, target: list.operations.categories.button, method: adjustOperations, priority: 2048 }
 
     NetGroup\UserGuide\Classes\Contao\Callbacks\TlManuals:
+        arguments:
+            $projectRoot: '%kernel.project_dir%'
         tags:
             - { name: contao.callback, table: tl_manuals, target: list.operations.edit.button, method: adjustIcon, priority: 1024 }
 

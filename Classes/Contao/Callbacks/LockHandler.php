@@ -14,10 +14,12 @@ declare(strict_types=1);
 
 namespace NetGroup\UserGuide\Classes\Contao\Callbacks;
 
+use Contao\Backend;
 use Contao\CoreBundle\DataContainer\DataContainerOperation;
 use Contao\CoreBundle\Exception\AccessDeniedException;
 use Contao\DataContainer;
 use Contao\Image;
+use Contao\StringUtil;
 use NetGroup\UserGuide\Classes\Enums\TableNames;
 use NetGroup\UserGuide\Classes\Services\Helper\LockHelper;
 use NetGroup\UserGuide\Classes\Services\Helper\TableMatcher;
@@ -85,8 +87,8 @@ class LockHandler
             ) {
                 return sprintf(
                     '<a href="%s" title="%s"%s>%s</a> ',
-                    \Backend::addToUrl($href . '&amp;id=' . $operation['id']),
-                    \StringUtil::specialchars($title),
+                    Backend::addToUrl($href . '&amp;id=' . $operation['id']),
+                    StringUtil::specialchars($title),
                     $attributes,
                     Image::getHtml($icon, $label)
                 );
