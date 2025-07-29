@@ -14,21 +14,25 @@ declare(strict_types=1);
 
 namespace NetGroup\UserGuide\Classes\Contao\Callbacks;
 
-use Contao\Backend;
 use Contao\CoreBundle\DataContainer\DataContainerOperation;
 use Contao\DataContainer;
-use Contao\Image;
-use Contao\StringUtil;
+use NetGroup\UserGuide\Classes\Services\Factories\FinderFactory;
+use NetGroup\UserGuide\Classes\Services\Helper\ContaoAdapter;
 
 class TlManuals
 {
 
 
     /**
-     * @param string $projectRoot
+     * @param string        $projectRoot
+     * @param ContaoAdapter $adapter
+     * @param FinderFactory $finderFactory
      */
-    public function __construct(private readonly string $projectRoot)
-    {
+    public function __construct(
+        private readonly string $projectRoot,
+        private readonly ContaoAdapter $adapter,
+        private readonly FinderFactory $finderFactory
+    ) {
     }
 
 
@@ -64,16 +68,18 @@ class TlManuals
         ?string $next,
         DataContainer $dc
     ): ?string {
-        if (false === \is_file($this->projectRoot . '/system/themes/flexible/icons/children.svg')) {
+        $fs = $this->finderFactory->createFileSystem();
+
+        if (false === $fs->exists($this->projectRoot . '/system/themes/flexible/icons/children.svg')) {
             $icon = 'editor.svg';
         }
 
         return sprintf(
             '<a href="%s" title="%s"%s>%s</a> ',
-            Backend::addToUrl($href . '&amp;id=' . $operation['id']),
-            StringUtil::specialchars($title),
+            $this->adapter->addToUrl($href . '&amp;id=' . $operation['id']),
+            $this->adapter->specialchars($title),
             $attributes,
-            Image::getHtml($icon, $label)
+            $this->adapter->getHtml($icon, $label)
         );
     }
 }

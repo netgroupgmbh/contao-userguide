@@ -14,6 +14,7 @@ declare(strict_types=1);
 
 namespace NetGroup\UserGuide\Classes\Services\Factories;
 
+use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\Finder\Finder;
 
 class FinderFactory
@@ -26,5 +27,14 @@ class FinderFactory
     public function createFinder(): Finder
     {
         return new Finder();
+    }
+
+
+    /**
+     * @return Filesystem
+     */
+    public function createFileSystem(): Filesystem
+    {
+        return new Filesystem();
     }
 }

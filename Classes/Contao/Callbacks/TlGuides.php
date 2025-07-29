@@ -122,6 +122,7 @@ class TlGuides
     public function checkPermissions(?DataContainer $dc): void
     {
         $table = TableNames::tl_guides->name;
+
         if (null !== $dc && $table === $dc->table) {
             $pid = $dc->currentPid;
 

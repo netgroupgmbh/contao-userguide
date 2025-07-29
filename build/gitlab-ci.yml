@@ -17,7 +17,7 @@ test_cto5.3_php8.1:
         -   if: $CI_COMMIT_BRANCH == "dev-dz"
             when: never
         -   if: $CI_COMMIT_BRANCH == "dev-pf"
-            when: never
+            when: on_success
     image: registry.netgroup.de/testsuite_cto5.3_php8.3:1.0.1
     variables:
         GIT_STRATEGY: none
@@ -47,7 +47,7 @@ test_cto5.3_php8.2:
         -   if: $CI_COMMIT_BRANCH == "dev-dz"
             when: never
         -   if: $CI_COMMIT_BRANCH == "dev-pf"
-            when: never
+            when: on_success
     image: registry.netgroup.de/testsuite_cto5.3_php8.3:1.0.1
     variables:
         GIT_STRATEGY: none
@@ -77,7 +77,7 @@ test_cto5.3_php8.3:
         -   if: $CI_COMMIT_BRANCH == "dev-dz"
             when: never
         -   if: $CI_COMMIT_BRANCH == "dev-pf"
-            when: never
+            when: on_success
     image: registry.netgroup.de/testsuite_cto5.3_php8.3:1.0.1
     variables:
         GIT_STRATEGY: none

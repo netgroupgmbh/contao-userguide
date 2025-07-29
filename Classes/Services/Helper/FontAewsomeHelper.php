@@ -42,9 +42,10 @@ class FontAewsomeHelper
     public function createOpteions(): array
     {
         $finder     = $this->finderFactory->createFinder();
+        $fs         = $this->finderFactory->createFileSystem();
         $options    = [];
 
-        if (true === \is_dir($this->projectRoot . self::ICON_FOLDER)) {
+        if (true === $fs->exists($this->projectRoot . self::ICON_FOLDER)) {
             $finder->files()->in($this->projectRoot . self::ICON_FOLDER . '/*/')->name('*.svg');
 
             if (true === $finder->hasResults()) {

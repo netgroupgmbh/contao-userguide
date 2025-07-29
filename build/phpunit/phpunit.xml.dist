@@ -11,6 +11,9 @@
         <include>
             <directory suffix=".php">../../Classes/</directory>
         </include>
+        <exclude>
+            <directory suffix=".php">../../Classes/Contao/Manager/</directory>
+        </exclude>
         <report>
             <html outputDirectory="/tmp/coverage" lowUpperBound="35" highLowerBound="70"/>
             <text outputFile="php://stdout" showUncoveredFiles="false" showOnlySummary="true"/>

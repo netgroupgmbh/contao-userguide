@@ -31,15 +31,19 @@ class LockHelper
     /**
      * Prüft, ob ein Datensatz gesperrt ist.
      *
-     * @param int        $id
+     * @param int|null   $id
      * @param TableNames $table
      *
      * @return bool
      *
      * @throws \Doctrine\DBAL\Exception
      */
-    public function checkLocked(int $id, TableNames $table): bool
+    public function checkLocked(?int $id, TableNames $table): bool
     {
+        if (null === $id) {
+            return false;
+        }
+
         if (true === $this->queryHelper->loadLocked($id, $table)) {
             return true;
         }
@@ -47,9 +51,7 @@ class LockHelper
         if (TableNames::tl_guides === $table) {
             $pid = (int) $this->queryHelper->loadPidFromGuide($id);
 
-            if (true === $this->queryHelper->loadLocked($pid, TableNames::tl_manuals)) {
-                return true;
-            }
+            return $this->queryHelper->loadLocked($pid, TableNames::tl_manuals);
         }
 
         return false;

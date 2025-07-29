@@ -26,4 +26,13 @@ class FinderFactoryTest extends TestCase
         $factory = new FinderFactory();
         $this->assertNotNull($factory->createFinder());
     }
+
+
+    public function testCreateFilesystem(): void
+    {
+        $factory = new FinderFactory();
+        $this->assertNotNull($factory->createFileSystem());
+    }
+
+
 }

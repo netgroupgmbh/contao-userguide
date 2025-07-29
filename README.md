@@ -14,6 +14,6 @@ __NetGroup GmbH:__ Patrick Froch <info@netgroup.de>
 ## Voraussetzungen
 
 - php: ^8.2
-- contao/core-bundle:^4.13
+- contao/core-bundle: ^4.13||^5.0
 
 

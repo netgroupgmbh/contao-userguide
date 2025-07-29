@@ -14,13 +14,10 @@ declare(strict_types=1);
 
 namespace NetGroup\UserGuide\Classes\Contao\Callbacks;
 
-use Contao\Backend;
 use Contao\CoreBundle\DataContainer\DataContainerOperation;
 use Contao\CoreBundle\Exception\AccessDeniedException;
 use Contao\DataContainer;
-use Contao\Image;
-use Contao\StringUtil;
-use NetGroup\UserGuide\Classes\Enums\TableNames;
+use NetGroup\UserGuide\Classes\Services\Helper\ButtonHelper;
 use NetGroup\UserGuide\Classes\Services\Helper\LockHelper;
 use NetGroup\UserGuide\Classes\Services\Helper\TableMatcher;
 
@@ -31,10 +28,12 @@ class LockHandler
     /**
      * @param LockHelper   $lockHelper
      * @param TableMatcher $tableMatcher
+     * @param ButtonHelper $buttonHelper
      */
     public function __construct(
         private readonly LockHelper $lockHelper,
-        private readonly TableMatcher $tableMatcher
+        private readonly TableMatcher $tableMatcher,
+        private readonly ButtonHelper $buttonHelper
     ) {
     }
 
@@ -42,9 +41,21 @@ class LockHandler
     /**
      * button_callback: Disabled die Buttons, wenn der Datensatz gesperrt ist.
      *
-     * @param DataContainerOperation|array<string> $operation
+     * @param array|DataContainerOperation $operation
+     * @param string|null                  $href
+     * @param string                       $label
+     * @param string                       $title
+     * @param string|null                  $icon
+     * @param string                       $attributes
+     * @param string                       $table
+     * @param array                        $rootRecordIds
+     * @param array|null                   $childRecordIds
+     * @param bool                         $circularReference
+     * @param string|null                  $previous
+     * @param string|null                  $next
+     * @param DataContainer                $dc
      *
-     * @return void
+     * @return string
      *
      * @throws \Doctrine\DBAL\Exception
      */
@@ -65,37 +76,12 @@ class LockHandler
     ): string {
         // Nur in Contao >= 5.0
         if (false === \is_array($operation)) {
-            $row = $operation->getRecord();
+            $this->buttonHelper->handleButton($operation);
 
-            if (true === (bool) $row['locked']
-                || (
-                    !empty($row['pid'])
-                    && true === $this->lockHelper->checkLocked($row['pid'], TableNames::tl_manuals)
-                )
-            ) {
-                $operation->disable();
-            }
+            return '';
         }
 
-        // nur bei Contao 4 ausführen
-        if (true === \is_array($operation)) {
-            if (false === (bool) $operation['locked']
-                || (
-                    !empty($operation['pid'])
-                    && false === $this->lockHelper->checkLocked($operation['pid'], TableNames::tl_manuals)
-                )
-            ) {
-                return sprintf(
-                    '<a href="%s" title="%s"%s>%s</a> ',
-                    Backend::addToUrl($href . '&amp;id=' . $operation['id']),
-                    StringUtil::specialchars($title),
-                    $attributes,
-                    Image::getHtml($icon, $label)
-                );
-            }
-        }
-
-        return '';
+        return $this->buttonHelper->handelButtonInCto4($operation, $href, $label, $title, $attributes, $icon);
     }
 
 
