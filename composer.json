@@ -1,6 +1,6 @@
 {
     "name": "netgroup/userguide",
-    "description": "Es handelt sich um eine Erweiterung für das Open Source CMS Contao",
+    "description": "Es handelt sich um eine Erweiterung für das Open Source CMS Contao. Sie stellt eine Möglichkeit zur Verfügung, um im Backend Anleitungen für die Nutzer zur Verfügung zu stellen. Für jede Anleitung können eingene Kategorien für die Texte angelegt werden.",
     "license": "proprietary",
     "type": "contao-bundle",
     "authors": [
@@ -16,7 +16,7 @@
     },
     "require": {
         "php": "^8.2",
-        "contao/core-bundle": "^5.3"
+        "contao/core-bundle": "^4.13"
     },
     "require-dev": {
         "contao/test-case": "^5.3",

@@ -17,6 +17,7 @@ namespace NetGroup\UserGuide\Classes\Contao\Callbacks;
 use Contao\CoreBundle\DataContainer\DataContainerOperation;
 use Contao\CoreBundle\Exception\AccessDeniedException;
 use Contao\DataContainer;
+use Contao\Image;
 use NetGroup\UserGuide\Classes\Enums\TableNames;
 use NetGroup\UserGuide\Classes\Services\Helper\LockHelper;
 use NetGroup\UserGuide\Classes\Services\Helper\TableMatcher;
@@ -39,24 +40,60 @@ class LockHandler
     /**
      * button_callback: Disabled die Buttons, wenn der Datensatz gesperrt ist.
      *
-     * @param DataContainerOperation $operation
+     * @param DataContainerOperation|array<string> $operation
      *
      * @return void
      *
      * @throws \Doctrine\DBAL\Exception
      */
-    public function adjustOperations(DataContainerOperation $operation): void
-    {
-        $row = $operation->getRecord();
+    public function adjustOperations(
+        array|DataContainerOperation $operation,
+        ?string $href,
+        string $label,
+        string $title,
+        ?string $icon,
+        string $attributes,
+        string $table,
+        array $rootRecordIds,
+        ?array $childRecordIds,
+        bool $circularReference,
+        ?string $previous,
+        ?string $next,
+        DataContainer $dc
+    ): string {
+        // Nur in Contao >= 5.0
+        if (false === \is_array($operation)) {
+            $row = $operation->getRecord();
 
-        if (true === (bool) $row['locked']
-            || (
-                !empty($row['pid'])
-                && true === $this->lockHelper->checkLocked($row['pid'], TableNames::tl_manuals)
-            )
-        ) {
-            $operation->disable();
+            if (true === (bool) $row['locked']
+                || (
+                    !empty($row['pid'])
+                    && true === $this->lockHelper->checkLocked($row['pid'], TableNames::tl_manuals)
+                )
+            ) {
+                $operation->disable();
+            }
         }
+
+        // nur bei Contao 4 ausführen
+        if (true === \is_array($operation)) {
+            if (false === (bool) $operation['locked']
+                || (
+                    !empty($operation['pid'])
+                    && false === $this->lockHelper->checkLocked($operation['pid'], TableNames::tl_manuals)
+                )
+            ) {
+                return sprintf(
+                    '<a href="%s" title="%s"%s>%s</a> ',
+                    \Backend::addToUrl($href . '&amp;id=' . $operation['id']),
+                    \StringUtil::specialchars($title),
+                    $attributes,
+                    Image::getHtml($icon, $label)
+                );
+            }
+        }
+
+        return '';
     }
 
 

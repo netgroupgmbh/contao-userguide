@@ -6,15 +6,23 @@ services:
     # Callbacks
     NetGroup\UserGuide\Classes\Contao\Callbacks\LockHandler:
         tags:
-            - { name: contao.callback, table: tl_guides, target: list.operations.edit.button, method: adjustOperations, priority: 1024 }
-            - { name: contao.callback, table: tl_guides, target: list.operations.copy.button, method: adjustOperations, priority: 1024 }
-            - { name: contao.callback, table: tl_guides, target: list.operations.delete.button, method: adjustOperations, priority: 1024 }
+            # tl_guides
             - { name: contao.callback, table: tl_guides, target: fields.locked.load, method: checkDatasetLocked, priority: 1024 }
-            - { name: contao.callback, table: tl_manuals, target: list.operations.editheader.button, method: adjustOperations, priority: 1024 }
-            - { name: contao.callback, table: tl_manuals, target: list.operations.copy.button, method: adjustOperations, priority: 1024 }
-            - { name: contao.callback, table: tl_manuals, target: list.operations.delete.button, method: adjustOperations, priority: 1024 }
-            - { name: contao.callback, table: tl_manuals, target: list.operations.categories.button, method: adjustOperations, priority: 1024 }
+
+            - { name: contao.callback, table: tl_guides, target: list.operations.edit.button, method: adjustOperations, priority: 2048 }
+            - { name: contao.callback, table: tl_guides, target: list.operations.copy.button, method: adjustOperations, priority: 2048 }
+            - { name: contao.callback, table: tl_guides, target: list.operations.delete.button, method: adjustOperations, priority: 2048 }
+
+            # tl_manuals
             - { name: contao.callback, table: tl_manuals, target: fields.locked.load, method: checkDatasetLocked, priority: 1024 }
+            - { name: contao.callback, table: tl_manuals, target: list.operations.editheader.button, method: adjustOperations, priority: 2048 }
+            - { name: contao.callback, table: tl_manuals, target: list.operations.copy.button, method: adjustOperations, priority: 2048 }
+            - { name: contao.callback, table: tl_manuals, target: list.operations.delete.button, method: adjustOperations, priority: 2048 }
+            - { name: contao.callback, table: tl_manuals, target: list.operations.categories.button, method: adjustOperations, priority: 2048 }
+
+    NetGroup\UserGuide\Classes\Contao\Callbacks\TlManuals:
+        tags:
+            - { name: contao.callback, table: tl_manuals, target: list.operations.edit.button, method: adjustIcon, priority: 1024 }
 
     NetGroup\UserGuide\Classes\Contao\Callbacks\TlGuides:
         tags:
