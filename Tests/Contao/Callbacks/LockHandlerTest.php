@@ -74,9 +74,10 @@ class LockHandlerTest extends NetGroupTestCase
         $dcMock	        = $this->createMock(DataContainer::class);
 
         $this->buttonHelperMock->expects($this->once())
-                               ->method('handelButtonInCto4')
+                               ->method('handelButton')
                                ->with(
                                    $operationArray,
+                                   TableNames::tl_manuals->name,
                                    'edit.php',
                                    'Bearbeiten',
                                    'Titel',
@@ -92,7 +93,7 @@ class LockHandlerTest extends NetGroupTestCase
             'Titel',
             'icon.svg',
             ' class="edit"',
-            'tl_manuals',
+            TableNames::tl_manuals->name,
             [],
             null,
             false,

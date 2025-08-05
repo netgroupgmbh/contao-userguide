@@ -222,7 +222,7 @@ class QueryHelperTest extends TestCase
         $this->result->method('fetchFirstColumn')->willReturn($expected);
 
         // Act
-        $result = $this->queryHelper->loadPidFromGuide($id);
+        $result = $this->queryHelper->loadPidFromGuide($id, TableNames::tl_guides);
 
         // Assert
         $this->assertEquals('7', $result);

@@ -15,10 +15,14 @@ services:
 
             # tl_manuals
             - { name: contao.callback, table: tl_manuals, target: fields.locked.load, method: checkDatasetLocked, priority: 1024 }
+
             - { name: contao.callback, table: tl_manuals, target: list.operations.editheader.button, method: adjustOperations, priority: 2048 }
             - { name: contao.callback, table: tl_manuals, target: list.operations.copy.button, method: adjustOperations, priority: 2048 }
             - { name: contao.callback, table: tl_manuals, target: list.operations.delete.button, method: adjustOperations, priority: 2048 }
             - { name: contao.callback, table: tl_manuals, target: list.operations.categories.button, method: adjustOperations, priority: 2048 }
+
+            # tl_manual_categories
+            - { name: contao.callback, table: tl_manual_categories, target: fields.title.load, method: checkDatasetLocked, priority: 1024 }
 
     NetGroup\UserGuide\Classes\Contao\Callbacks\TlManuals:
         arguments:

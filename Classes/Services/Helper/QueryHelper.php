@@ -92,17 +92,18 @@ class QueryHelper
 
 
     /**
-     * Lädt die Pid einer Anleitung.
+     * Lädt die Pid einer Anleitung oder einer Kategorie.
      *
      * @param int $id
+     * @param     $table
      *
      * @return string
      *
      * @throws \Doctrine\DBAL\Exception
      */
-    public function loadPidFromGuide(int $id): string
+    public function loadPidFromGuide(int $id, TableNames $table): string
     {
-        return $this->loadFieldFromTable($id, 'pid', TableNames::tl_guides);
+        return $this->loadFieldFromTable($id, 'pid', $table);
     }
 
 

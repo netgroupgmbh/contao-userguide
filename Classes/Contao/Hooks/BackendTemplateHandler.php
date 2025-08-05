@@ -16,6 +16,7 @@ namespace NetGroup\UserGuide\Classes\Contao\Hooks;
 
 use NetGroup\UserGuide\Classes\Services\Helper\ContentHelper;
 use NetGroup\UserGuide\Classes\Services\Helper\QueryHelper;
+use NetGroup\UserGuide\Classes\Services\Helper\TableMatcher;
 use Symfony\Component\HttpFoundation\RequestStack;
 
 class BackendTemplateHandler
@@ -26,11 +27,13 @@ class BackendTemplateHandler
      * @param RequestStack  $requestStack
      * @param QueryHelper   $queryHelper
      * @param ContentHelper $contentHelper
+     * @param TableMatcher  $tableMatcher
      */
     public function __construct(
         private readonly RequestStack $requestStack,
         private readonly QueryHelper $queryHelper,
-        private readonly ContentHelper $contentHelper
+        private readonly ContentHelper $contentHelper,
+        private readonly TableMatcher $tableMatcher
     ) {
     }
 
@@ -57,8 +60,12 @@ class BackendTemplateHandler
                 && true === \str_contains($link, 'act=edit')
             ) {
                 $guideId    = (int) $request?->get('id');
-                $manualId   = (int) $this->queryHelper->loadPidFromGuide($guideId);
-                $buffer     = $this->contentHelper->insertBackLink($manualId, $guideId, $buffer);
+                $table      = $this->tableMatcher->getTableFromString('tl_guides');
+
+                if (null !== $table) {
+                    $manualId   = (int) $this->queryHelper->loadPidFromGuide($guideId, $table);
+                    $buffer     = $this->contentHelper->insertBackLink($manualId, $guideId, $buffer);
+                }
             }
         }
 

@@ -18,6 +18,7 @@ use NetGroup\UserGuide\Classes\Enums\TableNames;
 use NetGroup\UserGuide\Classes\Services\Helper\ButtonHelper;
 use NetGroup\UserGuide\Classes\Services\Helper\ContaoAdapter;
 use NetGroup\UserGuide\Classes\Services\Helper\LockHelper;
+use NetGroup\UserGuide\Classes\Services\Helper\TableMatcher;
 use PHPUnit\Framework\TestCase;
 
 class ButtonHelperTest extends TestCase
@@ -37,6 +38,12 @@ class ButtonHelperTest extends TestCase
 
 
     /**
+     * @var TableMatcher
+     */
+    private TableMatcher $tableMatcher;
+
+
+    /**
      * @var ButtonHelper
      */
     private ButtonHelper $buttonHelper;
@@ -46,8 +53,9 @@ class ButtonHelperTest extends TestCase
     {
         $this->lockHelperMock	= $this->createMock(LockHelper::class);
         $this->adapterMock		= $this->createMock(ContaoAdapter::class);
+        $this->tableMatcher		= $this->createMock(TableMatcher::class);
 
-        $this->buttonHelper = new ButtonHelper($this->lockHelperMock, $this->adapterMock);
+        $this->buttonHelper = new ButtonHelper($this->lockHelperMock, $this->adapterMock, $this->tableMatcher);
     }
 
 
@@ -62,9 +70,14 @@ class ButtonHelperTest extends TestCase
             'locked' => false,
         ];
 
+        $this->tableMatcher->expects($this->once())
+                           ->method('getTableFromString')
+                           ->with(TableNames::tl_manuals->name)
+                           ->willReturn(TableNames::tl_manuals);
+
         $this->lockHelperMock
             ->method('checkLocked')
-            ->with(9, TableNames::tl_manuals)
+            ->with(7, TableNames::tl_manuals)
             ->willReturn(false);
 
         $this->adapterMock
@@ -79,8 +92,9 @@ class ButtonHelperTest extends TestCase
             ->method('getHtml')
             ->willReturnCallback(static fn ($icon, $label) => $label);
 
-        $result = $this->buttonHelper->handelButtonInCto4(
+        $result = $this->buttonHelper->handelButton(
             $row,
+            TableNames::tl_manuals->name,
             'edit.php',
             'Bearbeiten',
             'Datensatz bearbeiten',
@@ -114,8 +128,9 @@ class ButtonHelperTest extends TestCase
             ->with(9, TableNames::tl_manuals)
             ->willReturn(true);
 
-        $result = $this->buttonHelper->handelButtonInCto4(
+        $result = $this->buttonHelper->handelButton(
             $row,
+            TableNames::tl_manuals->name,
             'edit.php',
             'Bearbeiten',
             'Datensatz bearbeiten',

@@ -74,7 +74,7 @@ class LockHandler
         ?string $next,
         DataContainer $dc
     ): string {
-        return $this->buttonHelper->handelButtonInCto4($operation, $href, $label, $title, $attributes, $icon);
+        return $this->buttonHelper->handelButton($operation, $table, $href, $label, $title, $attributes, $icon);
     }
 
 

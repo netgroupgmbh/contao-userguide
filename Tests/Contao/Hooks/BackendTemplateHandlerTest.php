@@ -15,8 +15,10 @@ declare(strict_types=1);
 namespace NetGroup\UserGuide\Tests\Contao\Hooks;
 
 use NetGroup\UserGuide\Classes\Contao\Hooks\BackendTemplateHandler;
+use NetGroup\UserGuide\Classes\Enums\TableNames;
 use NetGroup\UserGuide\Classes\Services\Helper\ContentHelper;
 use NetGroup\UserGuide\Classes\Services\Helper\QueryHelper;
+use NetGroup\UserGuide\Classes\Services\Helper\TableMatcher;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
@@ -44,6 +46,12 @@ class BackendTemplateHandlerTest extends TestCase
 
 
     /**
+     * @var TableMatcher
+     */
+    private TableMatcher $tableMatcher;
+
+
+    /**
      * @var BackendTemplateHandler
      */
     private BackendTemplateHandler $handler;
@@ -54,10 +62,12 @@ class BackendTemplateHandlerTest extends TestCase
         $this->requestStack     = $this->createMock(RequestStack::class);
         $this->queryHelper      = $this->createMock(QueryHelper::class);
         $this->contentHelper    = $this->createMock(ContentHelper::class);
+        $this->tableMatcher     = $this->createMock(TableMatcher::class);
         $this->handler          = new BackendTemplateHandler(
             $this->requestStack,
             $this->queryHelper,
-            $this->contentHelper
+            $this->contentHelper,
+            $this->tableMatcher
         );
     }
 
@@ -135,10 +145,15 @@ class BackendTemplateHandlerTest extends TestCase
             ->method('getCurrentRequest')
             ->willReturn($request);
 
+        $this->tableMatcher->expects($this->once())
+                           ->method('getTableFromString')
+                           ->with(TableNames::tl_guides->name)
+                           ->willReturn(TableNames::tl_guides);
+
         $this->queryHelper
             ->expects($this->once())
             ->method('loadPidFromGuide')
-            ->with(42)
+            ->with(42, TableNames::tl_guides)
             ->willReturn('11');
 
         $this->contentHelper
@@ -150,6 +165,49 @@ class BackendTemplateHandlerTest extends TestCase
         $result = $this->handler->insertPreviewLink('original buffer', 'be_main');
 
         $this->assertSame('buffer with backlink', $result);
+    }
+
+
+    /**
+     * Testet table is null
+     *
+     * @return void
+     *
+     * @throws \Doctrine\DBAL\Exception
+     */
+    public function testInsertPreviewLinkDoNothingIfTableIsNull(): void
+    {
+        $request = $this->createMock(Request::class);
+
+        $request
+            ->method('getUri')
+            ->willReturn('https://example.com/contao?do=usersguide&table=tl_guides&act=edit&id=42');
+
+        $request
+            ->method('get')
+            ->with('id')
+            ->willReturn('42');
+
+        $this->requestStack
+            ->method('getCurrentRequest')
+            ->willReturn($request);
+
+        $this->tableMatcher->expects($this->once())
+                           ->method('getTableFromString')
+                           ->with(TableNames::tl_guides->name)
+                           ->willReturn(null);
+
+        $this->queryHelper
+            ->expects($this->never())
+            ->method('loadPidFromGuide');
+
+        $this->contentHelper
+            ->expects($this->never())
+            ->method('insertBackLink');
+
+        $result = $this->handler->insertPreviewLink('original buffer', 'be_main');
+
+        $this->assertSame('original buffer', $result);
     }
 
 
@@ -172,6 +230,11 @@ class BackendTemplateHandlerTest extends TestCase
             ->method('get')
             ->with('id')
             ->willReturn(null);
+
+        $this->tableMatcher->expects($this->once())
+                           ->method('getTableFromString')
+                           ->with(TableNames::tl_guides->name)
+                           ->willReturn(TableNames::tl_guides);
 
         $this->requestStack
             ->method('getCurrentRequest')

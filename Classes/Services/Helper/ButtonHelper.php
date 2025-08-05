@@ -14,24 +14,28 @@ declare(strict_types=1);
 
 namespace NetGroup\UserGuide\Classes\Services\Helper;
 
-use NetGroup\UserGuide\Classes\Enums\TableNames;
-
 class ButtonHelper
 {
 
 
     /**
-     * @param LockHelper $lockHelper
+     * @param LockHelper    $lockHelper
+     * @param ContaoAdapter $adapter
+     * @param TableMatcher  $matcher
      */
-    public function __construct(private readonly LockHelper $lockHelper, private readonly ContaoAdapter $adapter)
-    {
+    public function __construct(
+        private readonly LockHelper $lockHelper,
+        private readonly ContaoAdapter $adapter,
+        private readonly TableMatcher $matcher
+    ) {
     }
 
 
     /**
-     * Blendet eine Operation unter Contao 4 aus.
+     * Blendet eine Operation aus.
      *
      * @param array       $row
+     * @param string      $tableName
      * @param string      $href
      * @param string      $label
      * @param string      $title
@@ -42,19 +46,23 @@ class ButtonHelper
      *
      * @throws \Doctrine\DBAL\Exception
      */
-    public function handelButtonInCto4(
+    public function handelButton(
         array $row,
+        string $tableName,
         string $href,
         string $label,
         string $title,
         string $attributes,
         ?string $icon
     ): string {
-        $table  = TableNames::tl_manuals;
-        $pid    = $row['pid'] ?? null;
-        $locked = $row['locked'] ?? false;
+        $table  = $this->matcher->getTableFromString($tableName);
+        $id     = $row['id'] ?? null;
+        $locked = !empty($row['locked']);
 
-        if (false === $locked || false === $this->lockHelper->checkLocked($pid, $table)
+        if (false === $locked
+            && null !== $table
+            && null !== $id
+            && false === $this->lockHelper->checkLocked($id, $table)
         ) {
             return sprintf(
                 '<a href="%s" title="%s"%s>%s</a> ',

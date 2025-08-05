@@ -44,14 +44,17 @@ class LockHelper
             return false;
         }
 
-        if (true === $this->queryHelper->loadLocked($id, $table)) {
-            return true;
+        if (TableNames::tl_guides === $table || TableNames::tl_manual_categories === $table) {
+            $pid = (int) $this->queryHelper->loadPidFromGuide($id, $table);
+
+            if (true === $this->queryHelper->loadLocked($pid, TableNames::tl_manuals)) {
+                // Bei flase weitere Prüfungen durchführen - hier kein return!
+                return true;
+            }
         }
 
         if (TableNames::tl_guides === $table) {
-            $pid = (int) $this->queryHelper->loadPidFromGuide($id);
-
-            return $this->queryHelper->loadLocked($pid, TableNames::tl_manuals);
+            return $this->queryHelper->loadLocked($id, $table);
         }
 
         return false;

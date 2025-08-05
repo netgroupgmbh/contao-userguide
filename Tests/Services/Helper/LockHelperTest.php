@@ -71,18 +71,46 @@ class LockHelperTest extends NetGroupTestCase
      *
      * @throws \Doctrine\DBAL\Exception
      */
-    public function testCheckLockedReturnTrueIfTableIsLocked(): void
+    public function testCheckLockedReturnFalseIfParentIsNotLockedAndTableIsTlManualCategories(): void
     {
         $id     = 12;
-        $table  = TableNames::tl_manuals;
+        $pid    = 34;
+        $table  = TableNames::tl_manual_categories;
+
+        $this->queryHelper->expects($this->once())
+                          ->method('loadPidFromGuide')
+                          ->with($id)
+                          ->willReturn("$pid");
 
         $this->queryHelper->expects($this->once())
                           ->method('loadLocked')
-                          ->with($id, $table)
-                          ->willReturn(true);
+                          ->with($pid, TableNames::tl_manuals)
+                          ->willReturn(false);
 
-        $this->queryHelper->expects($this->never())
-                          ->method('loadPidFromGuide');
+        $this->assertFalse($this->helper->checkLocked($id, $table));
+    }
+
+
+    /**
+     * @return void
+     *
+     * @throws \Doctrine\DBAL\Exception
+     */
+    public function testCheckLockedReturnFalseIfParentIsLockedAndTableIsTlManualCategories(): void
+    {
+        $id     = 12;
+        $pid    = 34;
+        $table  = TableNames::tl_manual_categories;
+
+        $this->queryHelper->expects($this->once())
+                          ->method('loadPidFromGuide')
+                          ->with($id)
+                          ->willReturn("$pid");
+
+        $this->queryHelper->expects($this->once())
+                          ->method('loadLocked')
+                          ->with($pid, TableNames::tl_manuals)
+                          ->willReturn(true);
 
         $this->assertTrue($this->helper->checkLocked($id, $table));
     }
@@ -93,81 +121,106 @@ class LockHelperTest extends NetGroupTestCase
      *
      * @throws \Doctrine\DBAL\Exception
      */
-    public function testCheckLockedReturnTrueIfParentTableIsLocked(): void
+    public function testCheckLockedReturnFalseIfParentIsLockedAndTableIsTlGuide(): void
     {
         $id     = 12;
         $pid    = 34;
         $table  = TableNames::tl_guides;
 
+        $this->queryHelper->expects($this->once())
+                          ->method('loadPidFromGuide')
+                          ->with($id)
+                          ->willReturn("$pid");
+
+        $this->queryHelper->expects($this->once())
+                          ->method('loadLocked')
+                          ->with($pid, TableNames::tl_manuals)
+                          ->willReturn(true);
+
+        $this->assertTrue($this->helper->checkLocked($id, $table));
+    }
+
+
+    /**
+     * @return void
+     *
+     * @throws \Doctrine\DBAL\Exception
+     */
+    public function testCheckLockedReturnFalseIfTableIsTlManualCategories(): void
+    {
+        $id     = 12;
+        $pid    = 34;
+        $table  = TableNames::tl_manual_categories;
+
+        $this->queryHelper->expects($this->once())
+                          ->method('loadPidFromGuide')
+                          ->with($id)
+                          ->willReturn("$pid");
+
+        $this->queryHelper->expects($this->once())
+                          ->method('loadLocked')
+                          ->with($pid, TableNames::tl_manuals)
+                          ->willReturn(false);
+
+        $this->assertFalse($this->helper->checkLocked($id, $table));
+    }
+
+
+    /**
+     * @return void
+     *
+     * @throws \Doctrine\DBAL\Exception
+     */
+    public function testCheckLockedReturnFalseIfTableIsTlGuidesAndNotLocked(): void
+    {
+        $id     = 12;
+        $pid    = 34;
+        $table  = TableNames::tl_guides;
+
+        $this->queryHelper->expects($this->once())
+                          ->method('loadPidFromGuide')
+                          ->with($id)
+                          ->willReturn("$pid");
+
         $this->queryHelper->expects($this->exactly(2))
                           ->method('loadLocked')
                           ->with(...$this->consecutiveParams(
-                              [$id, $table],
-                              [$pid, TableNames::tl_manuals]
+                              [$pid, TableNames::tl_manuals],
+                              [$id, $table]
+                          ))
+                          ->willReturn(false);
+
+        $this->assertFalse($this->helper->checkLocked($id, $table));
+    }
+
+
+    /**
+     * @return void
+     *
+     * @throws \Doctrine\DBAL\Exception
+     */
+    public function testCheckLockedReturnTrueIfTableIsTlGuidesAndLocked(): void
+    {
+        $id     = 12;
+        $pid    = 34;
+        $table  = TableNames::tl_guides;
+
+        $this->queryHelper->expects($this->once())
+                          ->method('loadPidFromGuide')
+                          ->with($id)
+                          ->willReturn("$pid");
+
+        $this->queryHelper->expects($this->exactly(2))
+                          ->method('loadLocked')
+                          ->with(...$this->consecutiveParams(
+                              [$pid, TableNames::tl_manuals],
+                              [$id, $table]
                           ))
                           ->willReturnOnConsecutiveCalls(
                               false,
                               true
                           );
 
-        $this->queryHelper->expects($this->once())
-                          ->method('loadPidFromGuide')
-                          ->with($id)
-                          ->willReturn("$pid");
-
         $this->assertTrue($this->helper->checkLocked($id, $table));
-    }
-
-
-    /**
-     * @return void
-     *
-     * @throws \Doctrine\DBAL\Exception
-     */
-    public function testCheckLockedReturnFalseIfDatasetAndParentTableAreNotLocked(): void
-    {
-        $id     = 12;
-        $pid    = 34;
-        $table  = TableNames::tl_guides;
-
-        $this->queryHelper->expects($this->exactly(2))
-                          ->method('loadLocked')
-                          ->with(...$this->consecutiveParams(
-                              [$id, $table],
-                              [$pid, TableNames::tl_manuals]
-                          ))
-                          ->willReturnOnConsecutiveCalls(
-                              false,
-                              false
-                          );
-
-        $this->queryHelper->expects($this->once())
-                          ->method('loadPidFromGuide')
-                          ->with($id)
-                          ->willReturn("$pid");
-
-        $this->assertFalse($this->helper->checkLocked($id, $table));
-    }
-
-
-    /**
-     * @return void
-     *
-     * @throws \Doctrine\DBAL\Exception
-     */
-    public function testCheckLockedReturnFalseIfDatasetIsNotLockedAndTabelIsTheParentTable(): void
-    {
-        $id     = 12;
-        $table  = TableNames::tl_manuals;
-
-        $this->queryHelper->expects($this->once())
-                          ->method('loadLocked')
-                          ->with($id, $table)
-                          ->willReturn(false);
-
-        $this->queryHelper->expects($this->never())
-                          ->method('loadPidFromGuide');
-
-        $this->assertFalse($this->helper->checkLocked($id, $table));
     }
 }
