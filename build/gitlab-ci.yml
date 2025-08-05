@@ -5,7 +5,7 @@ stages:
     - test_cto5.0
 
 test_cto5.3_php8.4:
-    stage: test_cto5.4
+    stage: test_cto5.3
     rules:
         -   if: $CI_COMMIT_BRANCH == "main"
             when: on_success
