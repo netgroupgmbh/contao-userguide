@@ -26,10 +26,10 @@ class TemplateHelper
 {
 
 
-    public const string TEMPLATE_NAME_MODULE = 'mod_guide';
+    public const TEMPLATE_NAME_MODULE = 'mod_guide';
 
 
-    public const string TEMPLATE_NAME_LINK = 'inc_label_tl_guide';
+    public const TEMPLATE_NAME_LINK = 'inc_label_tl_guide';
 
 
     /**
