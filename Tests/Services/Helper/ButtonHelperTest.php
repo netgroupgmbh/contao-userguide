@@ -14,7 +14,6 @@ declare(strict_types=1);
 
 namespace NetGroup\UserGuide\Tests\Services\Helper;
 
-use Contao\CoreBundle\DataContainer\DataContainerOperation;
 use NetGroup\UserGuide\Classes\Enums\TableNames;
 use NetGroup\UserGuide\Classes\Services\Helper\ButtonHelper;
 use NetGroup\UserGuide\Classes\Services\Helper\ContaoAdapter;
@@ -53,76 +52,6 @@ class ButtonHelperTest extends TestCase
 
 
     /**
-     * Prüft, ob handleButton die Operation bei gesetztem "locked" deaktiviert.
-     *
-     * @return void
-     * @return void
-     * @return void
-     * @return void
-     *
-     * @throws \Doctrine\DBAL\Exception
-     *
-     * public function testHandleButtonDisablesOperationWhenLockedIsTrue(): void
-     * {
-     * $operationMock = $this->createMock(DataContainerOperation::class);
-     *
-     * $operationMock
-     * ->method('getRecord')
-     * ->willReturn(['locked' => true]);
-     *
-     * $operationMock
-     * ->expects($this->once())
-     * ->method('disable');
-     *
-     * $this->buttonHelper->handleButton($operationMock);
-     * }
-     * @throws \Doctrine\DBAL\Exception
-     *
-     * public function testHandleButtonDisablesOperationWhenParentIsLocked(): void
-     * {
-     * $operationMock = $this->createMock(DataContainerOperation::class);
-     *
-     * $operationMock
-     * ->method('getRecord')
-     * ->willReturn([
-     * 'locked' => false,
-     * 'pid'	 => 123,
-     * ]);
-     *
-     * $this->lockHelperMock
-     * ->method('checkLocked')
-     * ->with(123, TableNames::tl_manuals)
-     * ->willReturn(true);
-     *
-     * $operationMock
-     * ->expects($this->once())
-     * ->method('disable');
-     *
-     * $this->buttonHelper->handleButton($operationMock);
-     * }
-     * @throws \Doctrine\DBAL\Exception
-     *
-     * public function testHandleButtonDoesNotDisableOperationWhenUnlocked(): void
-     * {
-     * $operationMock = $this->createMock(DataContainerOperation::class);
-     *
-     * $operationMock
-     * ->method('getRecord')
-     * ->willReturn([
-     * 'locked' => false,
-     * 'pid'	 => 123,
-     * ]);
-     *
-     * $this->lockHelperMock
-     * ->method('checkLocked')
-     * ->willReturn(false);
-     *
-     * $operationMock
-     * ->expects($this->never())
-     * ->method('disable');
-     *
-     * $this->buttonHelper->handleButton($operationMock);
-     * }
      * @throws \Doctrine\DBAL\Exception
      */
     public function testHandelButtonInCto4ReturnsLinkWhenNotLocked(): void

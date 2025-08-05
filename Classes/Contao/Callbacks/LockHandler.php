@@ -74,13 +74,6 @@ class LockHandler
         ?string $next,
         DataContainer $dc
     ): string {
-        if (true === \is_a($operation, DataContainerOperation::class) && \method_exists($operation, 'disable')) {
-            // Nur in Contao >= 5.0
-            // $this->buttonHelper->handleButton($operation);
-
-            // return '';
-        }
-
         return $this->buttonHelper->handelButtonInCto4($operation, $href, $label, $title, $attributes, $icon);
     }
 

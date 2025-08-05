@@ -14,7 +14,6 @@ declare(strict_types=1);
 
 namespace NetGroup\UserGuide\Classes\Services\Helper;
 
-use Contao\CoreBundle\DataContainer\DataContainerOperation;
 use NetGroup\UserGuide\Classes\Enums\TableNames;
 
 class ButtonHelper
@@ -26,30 +25,6 @@ class ButtonHelper
      */
     public function __construct(private readonly LockHelper $lockHelper, private readonly ContaoAdapter $adapter)
     {
-    }
-
-
-    /**
-     * Blendet eine Opteration unter Contao 5 aus.
-     *
-     * @param DataContainerOperation $operation
-     *
-     * @return void
-     *
-     * @throws \Doctrine\DBAL\Exception
-     */
-    public function handleButton(DataContainerOperation $operation): void
-    {
-        $row = $operation->getRecord();
-
-        if (true === (bool) $row['locked']
-            || (
-                !empty($row['pid'])
-                && true === $this->lockHelper->checkLocked($row['pid'], TableNames::tl_manuals)
-            )
-        ) {
-            $operation->disable();
-        }
     }
 
 
