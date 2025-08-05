@@ -74,8 +74,8 @@ class LockHandler
         ?string $next,
         DataContainer $dc
     ): string {
-        // Nur in Contao >= 5.0
-        if (false === \is_array($operation)) {
+        if (true === \is_a($operation, DataContainerOperation::class) && \method_exists($operation, 'disable')) {
+            // Nur in Contao >= 5.0
             $this->buttonHelper->handleButton($operation);
 
             return '';
