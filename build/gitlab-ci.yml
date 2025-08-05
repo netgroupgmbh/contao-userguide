@@ -18,7 +18,7 @@ test_cto5.3_php8.1:
             when: never
         -   if: $CI_COMMIT_BRANCH == "dev-pf"
             when: on_success
-    image: registry.netgroup.de/testsuite_cto5.3_php8.3:1.0.1
+    image: registry.netgroup.de/testsuite_cto5.3_php8.1:1.0.1
     variables:
         GIT_STRATEGY: none
         PROJECT_NAME: netgroup/userguide
@@ -48,7 +48,7 @@ test_cto5.3_php8.2:
             when: never
         -   if: $CI_COMMIT_BRANCH == "dev-pf"
             when: on_success
-    image: registry.netgroup.de/testsuite_cto5.3_php8.3:1.0.1
+    image: registry.netgroup.de/testsuite_cto5.3_php8.2:1.0.1
     variables:
         GIT_STRATEGY: none
         PROJECT_NAME: netgroup/userguide
