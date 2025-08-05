@@ -35,11 +35,10 @@ $GLOBALS['TL_DCA'][$table] = [
     // List
     'list' => [
         'sorting' => [
-            'mode'              => \Contao\DataContainer::MODE_PARENT,
+            'mode'              => \Contao\DataContainer::MODE_SORTED_PARENT,
             'fields'            => ['title'],
             'panelLayout'       => 'sort,filter;search,limit',
-            'flag'              => \Contao\DataContainer::SORT_INITIAL_LETTER_ASC,
-            'headerFields'      => ['title']
+            'flag'              => \Contao\DataContainer::SORT_INITIAL_LETTER_ASC
         ],
         'label' => [
             'fields'            => ['title', 'title'],
