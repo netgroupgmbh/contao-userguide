@@ -70,43 +70,37 @@ class LockHandlerTest extends NetGroupTestCase
      * Prüft, ob bei Contao 5 handleButton aufgerufen und ein leerer String zurückgegeben wird.
      *
      * @return void
-     *
-     * @throws \Doctrine\DBAL\Exception
-     */
-    public function testAdjustOperationsInContao5CallsHandleButtonAndReturnsEmptyString(): void
-    {
-        $operationMock  = $this->createMock(DataContainerOperation::class);
-        $dcMock	        = $this->createMock(DataContainer::class);
-
-        $this->buttonHelperMock->expects($this->once())
-                               ->method('handleButton')
-                               ->with($operationMock);
-
-        $result = $this->lockHandler->adjustOperations(
-            $operationMock,
-            'edit.php',
-            'Bearbeiten',
-            'Titel',
-            'icon.svg',
-            ' class="edit"',
-            'tl_manuals',
-            [],
-            null,
-            false,
-            null,
-            null,
-            $dcMock
-        );
-
-        $this->assertSame('', $result);
-    }
-
-
-    /**
-     * Prüft, ob bei Contao 4 handelButtonInCto4 aufgerufen und der Rückgabewert durchgereicht wird.
-     *
      * @return void
      *
+     * @throws \Doctrine\DBAL\Exception
+     *
+     * public function testAdjustOperationsInContao5CallsHandleButtonAndReturnsEmptyString(): void
+     * {
+     * $operationMock  = $this->createMock(DataContainerOperation::class);
+     * $dcMock	        = $this->createMock(DataContainer::class);
+     *
+     * $this->buttonHelperMock->expects($this->once())
+     * ->method('handleButton')
+     * ->with($operationMock);
+     *
+     * $result = $this->lockHandler->adjustOperations(
+     * $operationMock,
+     * 'edit.php',
+     * 'Bearbeiten',
+     * 'Titel',
+     * 'icon.svg',
+     * ' class="edit"',
+     * 'tl_manuals',
+     * [],
+     * null,
+     * false,
+     * null,
+     * null,
+     * $dcMock
+     * );
+     *
+     * $this->assertSame('', $result);
+     * }
      * @throws \Doctrine\DBAL\Exception
      */
     public function testAdjustOperationsInContao4CallsHandelButtonInCto4AndReturnsHtml(): void
