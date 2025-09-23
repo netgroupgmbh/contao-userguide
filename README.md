@@ -12,8 +12,7 @@ Ob kurze Hilfetexte oder umfassende Schritt-für-Schritt-Erklärungen: Mit UserG
 
 ## Autor
 
-**NetGroup GmbH**
-Entwicklung: Patrick Froch <info@netgroup.de>
+**NetGroup GmbH** - Patrick Froch <info@netgroup.de>
 
 
 ## Voraussetzungen
