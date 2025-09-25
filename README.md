@@ -18,7 +18,7 @@ Ob kurze Hilfetexte oder umfassende Schritt-für-Schritt-Erklärungen: Mit UserG
 ## Voraussetzungen
 
 - PHP: ^8.2
-- Contao: ^4.13 oder ^5.0
+- Contao: ^4.13 | ^5.0
 
 
 ## Installation
@@ -42,7 +42,7 @@ Zur besseren Orientierung lassen sich **Icons** aus der Sammlung [Font Awesome F
 
 ### Kategorien
 
-Abschnitten kann eine **Kategorie** zugewiesen werden, die pro Anleitung individuell definieren werden können. So ist auch bei vielen Inhalten ein optimaler Überblick gewährleistet und es kann gezielt filtert werden.
+Abschnitten kann eine **Kategorie** zugewiesen werden, die pro Anleitung individuell definiert werden können. So ist auch bei vielen Inhalten ein optimaler Überblick gewährleistet und es kann gezielt filtert werden.
 
 ### Bearbeitung sperren
 
@@ -51,6 +51,13 @@ Einzelne Anleitungen oder Abschnitte lassen sich zur Sicherung vor ungewollten �
 > ⚠️ **Hinweis:** Die Sperrung kann nur direkt über die Datenbank aufgehoben werden.
 
 Dies ist sinnvoll, wenn man Anleitungen weitergeben will, diese aber nicht bearbeitet werden sollen.
+
+
+## Ausgabe
+
+Die Ausgabe geschieht direkt im Backend:
+
+![Ausgabe](ausgabe.png)
 
 
 ## Mitwirken
