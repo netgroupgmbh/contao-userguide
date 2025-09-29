@@ -11,8 +11,11 @@
             "role": "Developer"
         }
     ],
+    "homepage": "http://www.netgroup.de",
     "support": {
-        "email": "info@netgroup.de"
+        "email": "info@netgroup.de",
+        "issues": "https://github.com/netgroupgmbh/contao-userguide/issues",
+        "source": "https://github.com/netgroupgmbh/contao-userguide"
     },
     "require": {
         "php": "^8.2",
