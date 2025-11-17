@@ -197,7 +197,7 @@ class TemplateHelperTest extends NetGroupTestCase
         $row = ['id' => 99, 'icon' => 'custom-icon'];
         $label = 'My Label';
 
-        $result = $this->helper->getlabelForTlGuide($row, $label);
+        $result = $this->helper->getLabelForTlGuide($row, $label);
 
         $this->assertSame('parsed template', $result);
     }
@@ -231,7 +231,7 @@ class TemplateHelperTest extends NetGroupTestCase
         $row = ['id' => 1, 'icon' => ''];
         $label = 'Label Fallback';
 
-        $result = $this->helper->getlabelForTlGuide($row, $label);
+        $result = $this->helper->getLabelForTlGuide($row, $label);
 
         $this->assertSame('template with default icon', $result);
     }
@@ -249,7 +249,7 @@ class TemplateHelperTest extends NetGroupTestCase
         $row = ['id' => 55, 'icon' => 'fa-icon'];
         $label = 'Plain Label';
 
-        $result = $this->helper->getlabelForTlGuide($row, $label);
+        $result = $this->helper->getLabelForTlGuide($row, $label);
 
         $this->assertSame('Plain Label', $result);
     }

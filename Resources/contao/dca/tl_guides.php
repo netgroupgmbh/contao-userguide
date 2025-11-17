@@ -90,7 +90,7 @@ $GLOBALS['TL_DCA'][$table] = [
 	// Palettes
 	'palettes' => [
         '__selector__'              => [''],
-        'default'                   => '{title_legend},title,category,icon,locked;{content_legend},content;'
+        'default'                   => '{title_legend},title,category,locked;{icon_legend},icon;{content_legend},content;'
     ],
 
 	// Subpalettes
@@ -124,7 +124,7 @@ $GLOBALS['TL_DCA'][$table] = [
 //            'filter'                => true, // raus, da für die Kategorien andere Anleitungen nur Ids angezeigt werden und diese kein Ergebnis liefern!
             'sorting'               => true,
             'inputType'             => 'select',
-            'eval'                  => ['maxlength'=>255, 'tl_class' => 'w50', 'includeBlankOption' => true],
+            'eval'                  => ['maxlength'=>255, 'tl_class' => 'long clr', 'includeBlankOption' => true, 'multiple' => false],
             'sql'                   => "varchar(255) NOT NULL default ''"
         ],
         'icon' => [
@@ -132,8 +132,9 @@ $GLOBALS['TL_DCA'][$table] = [
             'exclude'               => true,
             'filter'                => true,
             'sorting'               => true,
-            'inputType'             => 'select',
-            'eval'                  => ['maxlength'=>255, 'tl_class' => 'w50', 'includeBlankOption' => true, 'chosen'=>true],
+//            'inputType'             => 'select',
+            'inputType'             => 'fontawesomeIconPicker',
+            'eval'                  => ['maxlength'=>255],
             'sql'                   => "varchar(255) NOT NULL default ''"
         ],
         'content' => [

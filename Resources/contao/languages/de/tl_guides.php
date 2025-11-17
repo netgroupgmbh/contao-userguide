@@ -38,6 +38,7 @@ $GLOBALS['TL_LANG'][$table]['locked']   = ['Gesperrt', 'Ist der Haken gesetzt, k
  * Legends
  */
 $GLOBALS['TL_LANG'][$table]['title_legend']     = 'Einstellungen des Abschnitts';
+$GLOBALS['TL_LANG'][$table]['icon_legend']      = 'Icon des Abschnitts';
 $GLOBALS['TL_LANG'][$table]['content_legend']   = 'Text des Abschnitts';
 
 

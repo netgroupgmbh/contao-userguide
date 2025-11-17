@@ -83,7 +83,7 @@ class TemplateHelper
      *
      * @return string
      */
-    public function getlabelForTlGuide(array $row, string $label): string
+    public function getLabelForTlGuide(array $row, string $label): string
     {
         $request = $this->requestStack->getCurrentRequest();
 
@@ -92,7 +92,7 @@ class TemplateHelper
             $template->id       = $row['id'];
             $template->url      = $request->getUri();
             $template->label    = $label;
-            $template->icon     = !empty($row['icon']) ? $row['icon'] : 'fa-solid fa-circle-info';
+            $template->icon     = $this->contentHelper->getIcon($row);
 
             return $template->parse();
         }

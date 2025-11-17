@@ -175,7 +175,7 @@ class TlGuidesTest extends NetGroupTestCase
         $label  = 'Test';
 
         $this->templateHelperMock
-            ->method('getlabelForTlGuide')
+            ->method('getLabelForTlGuide')
             ->with($row, $label)
             ->willReturn('HTML Label');
 

@@ -92,7 +92,7 @@ class TlGuides
      */
     public function createLabel(array $row, string $label, DataContainer $dc, array $labels = []): string
     {
-        return $this->templateHelper->getlabelForTlGuide($row, $label);
+        return $this->templateHelper->getLabelForTlGuide($row, $label);
     }
 
 

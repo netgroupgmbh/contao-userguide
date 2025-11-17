@@ -73,4 +73,33 @@ class ContentHelper
 
         return \str_replace($search, $replace, $buffer);
     }
+
+    /**
+     * Gibt das Icon zurück.
+     * Wird der markocupic/fontawesome-icon-picker-bundle verwendet, ist es ein Array, sonst ein String.
+     *
+     * @param $row
+     *
+     * @return string
+     */
+    public function getIcon($row): string
+    {
+        $icon = '';
+
+        if (!empty($row['icon'])) {
+            $icon = $row['icon'];
+
+            try {
+                $iconData = \unserialize($icon, [null]);
+
+                if (true === \is_array($iconData) && !empty($iconData[0]) && !empty($iconData[1])) {
+                    $icon   = 'fa-solid'; // 'fa-' . $iconData[1];
+                    $icon  .= ' fa-' . $iconData[0];
+                }
+            } catch (\Exception $e) {
+            }
+        }
+
+        return $icon;
+    }
 }

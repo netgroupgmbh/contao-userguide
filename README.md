@@ -19,6 +19,7 @@ Ob kurze Hilfetexte oder umfassende Schritt-für-Schritt-Erklärungen: Mit UserG
 
 - PHP: ^8.2
 - Contao: ^4.13 | ^5.0
+- markocupic/fontawesome-icon-picker-bundle: ^2.0
 
 
 ## Installation
@@ -96,3 +97,5 @@ Die Erweiterung wurde erfolgreich mit folgenden Kombinationen aus PHP und Contao
 ## Lizenz
 
 Dieses Projekt steht unter der [Apache 2.0 Lizenz](https://choosealicense.com/licenses/apache-2.0/).
+
+Für die Auswahl der Icons wird die Erweiterung `markocupic/fontawesome-icon-picker-bundle` eingesetzt, sie steht unter "LGPL-3.0+".

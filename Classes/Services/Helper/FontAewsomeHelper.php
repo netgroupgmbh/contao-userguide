@@ -37,6 +37,8 @@ class FontAewsomeHelper
     /**
      * Erstellt aus den SVGs die Optionen für die Icons.
      *
+     * @todo (wenn dauerhaft markocupic/fontawesome-icon-picker-bundle verwendet wird kann dies entvernt werden)
+     *
      * @return string[]
      */
     public function createOpteions(): array
