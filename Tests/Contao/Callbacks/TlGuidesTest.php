@@ -157,7 +157,7 @@ class TlGuidesTest extends NetGroupTestCase
     public function testGenerateFontAwesomeOptionsReturnsHelperResult(): void
     {
         $this->fontAwesomeHelperMock
-            ->method('createOpteions')
+            ->method('createOptions')
             ->willReturn(['icon1' => 'Icon 1']);
 
         $result = $this->tlGuides->generateFontAwesomeOptions(null);

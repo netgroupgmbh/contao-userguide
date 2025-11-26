@@ -76,7 +76,7 @@ class TlGuides
      */
     public function generateFontAwesomeOptions(?DataContainer $dc): array
     {
-        return $this->fontAewsomeHelper->createOpteions();
+        return $this->fontAewsomeHelper->createOptions();
     }
 
 

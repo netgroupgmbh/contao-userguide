@@ -94,7 +94,7 @@ class FontAewsomeHelperTest extends TestCase
                          ->willReturn(false);
 
         // Act
-        $result = $this->helper->createOpteions();
+        $result = $this->helper->createOptions();
 
         // Assert
         $this->assertEquals([], $result);
@@ -123,7 +123,7 @@ class FontAewsomeHelperTest extends TestCase
                      ->willReturn(false);
 
         // Act
-        $result = $this->helper->createOpteions();
+        $result = $this->helper->createOptions();
 
         // Assert
         $this->assertEquals([], $result);
@@ -156,7 +156,7 @@ class FontAewsomeHelperTest extends TestCase
         $this->finder->method('getIterator')->willReturn(new \ArrayIterator([$file1, $file2]));
 
         // Act
-        $result = $this->helper->createOpteions();
+        $result = $this->helper->createOptions();
 
         // Assert
         $expected = [

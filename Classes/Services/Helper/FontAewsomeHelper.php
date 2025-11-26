@@ -39,7 +39,7 @@ class FontAewsomeHelper
      *
      * @return string[]
      */
-    public function createOpteions(): array
+    public function createOptions(): array
     {
         $finder     = $this->finderFactory->createFinder();
         $fs         = $this->finderFactory->createFileSystem();
