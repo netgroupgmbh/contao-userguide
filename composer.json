@@ -15,7 +15,8 @@
     "support": {
         "email": "info@netgroup.de",
         "issues": "https://github.com/netgroupgmbh/contao-userguide/issues",
-        "source": "https://github.com/netgroupgmbh/contao-userguide"
+        "source": "https://github.com/netgroupgmbh/contao-userguide",
+        "docs": "https://www.netgroup.de/userguide.html"
     },
     "require": {
         "php": "^8.2",

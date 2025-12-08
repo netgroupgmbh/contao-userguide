@@ -15,6 +15,20 @@ Ob kurze Hilfetexte oder umfassende Schritt-für-Schritt-Erklärungen: Mit UserG
 **NetGroup GmbH** - Patrick Froch <info@netgroup.de>
 
 
+## Support
+
+NetGroup Gesellschaft für Informationstechnologien in Deutschland mbH
+Kaiserstraße 67
+44135 Dortmund
+
+Kontakt:
+Telefon: +49 231 557509-0
+Telefax: +49 231 557509-99
+E-Mail: info@netgroup.de
+
+Internet: https://www.netgroup.de/userguide.html
+
+
 ## Voraussetzungen
 
 - PHP: ^8.2
