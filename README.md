@@ -17,13 +17,13 @@ Ob kurze Hilfetexte oder umfassende Schritt-für-Schritt-Erklärungen: Mit UserG
 
 ## Support
 
-NetGroup Gesellschaft für Informationstechnologien in Deutschland mbH
-Kaiserstraße 67
+NetGroup Gesellschaft für Informationstechnologien in Deutschland mbH<br>
+Kaiserstraße 67<br>
 44135 Dortmund
 
-Kontakt:
-Telefon: +49 231 557509-0
-Telefax: +49 231 557509-99
+Kontakt:<br>
+Telefon: +49 231 557509-0<br>
+Telefax: +49 231 557509-99<br>
 E-Mail: info@netgroup.de
 
 Internet: https://www.netgroup.de/userguide.html
