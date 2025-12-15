@@ -33,6 +33,7 @@ Internet: https://www.netgroup.de/userguide.html
 
 - PHP: ^8.2
 - Contao: ^4.13 | ^5.0
+- netgroup/icontoolkit: ^1.0
 
 
 ## Installation
@@ -89,6 +90,9 @@ Tests können mit folgendem Skript im Wurzelverzeichnis der Erweiterung ausgefü
 ```bash
 ./build/runtests.sh
 ```
+
+_(Dies setzt voraus, dass die Erweiterung unter `CONTAO_ROOT/src/NetGroup/IconToolkit` installiert ist. Ist dies nicht
+der Fall, müssen die Testtools einzeln aufgerufen werden. Die Kommandos stehen in der oben genannten Datei.)_
 
 
 ## Getestete Versionen

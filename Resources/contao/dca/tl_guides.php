@@ -132,8 +132,8 @@ $GLOBALS['TL_DCA'][$table] = [
             'exclude'               => true,
             'filter'                => true,
             'sorting'               => true,
-            'inputType'             => 'select',
-            'eval'                  => ['maxlength'=>255, 'tl_class' => 'w50', 'includeBlankOption' => true, 'chosen'=>true],
+            'inputType'             => \NetGroup\IconToolkit\Classes\Contao\Widgets\IconPickerWidget::TYPE,
+            'eval'                  => ['maxlength'=>255, 'tl_class' => 'w50'],
             'sql'                   => "varchar(255) NOT NULL default ''"
         ],
         'content' => [
@@ -149,7 +149,7 @@ $GLOBALS['TL_DCA'][$table] = [
             'exclude'               => true,
             'sorting'               => true,
             'inputType'             => 'checkbox',
-            'eval'                  => ['tl_class'=>'w50 m12'],
+            'eval'                  => ['tl_class'=>'w50 m12 clr'],
             'sql'                   => "char(1) NOT NULL default ''"
         ]
 	]
